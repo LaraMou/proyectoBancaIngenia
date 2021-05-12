@@ -27,7 +27,7 @@ public class SwaggerConfig {
     public Docket swaggerConfiguration(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.cfgs.appvetspring"))
+                .apis(RequestHandlerSelectors.basePackage("com.ingenia.banca"))
                 .build().apiInfo(apiDetails());
     }
 
@@ -36,7 +36,7 @@ public class SwaggerConfig {
                 "description",
                 "1.0",
                 "",
-                new Contact("Mónica Lara Ocaña","","mlara33.mnl@gmail.com"),
+                new Contact("Adrian Nuñez Muñoz","","adriuma92@gmail.com"),
                 "",
                 "",
                 Collections.emptyList());
