@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Entity
-public class Operation {
+public class Movimiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +30,10 @@ public class Operation {
     @ElementCollection
     private Map<Double,String> historicoMovimiento ;
 
-    public Operation() {
+    public Movimiento() {
     }
 
-    public Operation(Double importe, LocalDateTime fecha, LocalDateTime fechaValor, String descripcion, String concepto, Map<Double, String> historicoMovimiento) {
+    public Movimiento(Double importe, LocalDateTime fecha, LocalDateTime fechaValor, String descripcion, String concepto, Map<Double, String> historicoMovimiento) {
         this.importe = importe;
         this.fecha = fecha;
         this.fechaValor = fechaValor;
