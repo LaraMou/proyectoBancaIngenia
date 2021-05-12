@@ -11,13 +11,13 @@ public class Movimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="importe")
+    @Column(name="importe" , nullable = false)
     private Double importe;
 
-    @Column(name="fecha")
+    @Column(name="fecha" , nullable = false)
     private LocalDateTime fecha;
 
-    @Column(name="fecha_valor")
+    @Column(name="fecha_valor" , nullable = false)
     private LocalDateTime fechaValor;
 
     @Column(name="descripcion")
