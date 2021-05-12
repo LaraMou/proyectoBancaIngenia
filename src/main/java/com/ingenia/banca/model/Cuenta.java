@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,17 @@ public class Cuenta {
     @ApiModelProperty("Clave primaria. Tipo long")
     private Long num_cuenta;
 
+
     @ApiModelProperty("Formato Fecha")
     @NotNull
-    private LocalDate fechaapertura;
+    private LocalDateTime fechaapertura;
+
+    @ApiModelProperty("Formato Fecha")
+    @NotNull
+    private LocalDateTime fechaactual;
 
     @ApiModelProperty("Boolean estado cuenta: Activo/Inactivo")
-    @NotNull
-    private Boolean activo;
+    private Estado estado;
     @ApiModelProperty("Double Saldo inicial")
     @NotNull
     @Column(name= "saldo_inicial")
@@ -30,15 +35,14 @@ public class Cuenta {
     @NotNull
     @Column(name= "saldo_actual")
     private Double saldoactual;
-    @ApiModelProperty("Listado transaccion")
-    //TODO
-    //
+
 
     @ManyToMany(mappedBy = "cuentas", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Usuario> usuarios = new ArrayList<>();
 
     public Cuenta() {
     }
+
 
     public Long getNum_cuenta() {
         return num_cuenta;
@@ -48,20 +52,28 @@ public class Cuenta {
         this.num_cuenta = num_cuenta;
     }
 
-    public LocalDate getFechaapertura() {
+    public LocalDateTime getFechaapertura() {
         return fechaapertura;
     }
 
-    public void setFechaapertura(LocalDate fechaapertura) {
+    public void setFechaapertura(LocalDateTime fechaapertura) {
         this.fechaapertura = fechaapertura;
     }
 
-    public Boolean getActivo() {
-        return activo;
+    public LocalDateTime getFechaactual() {
+        return fechaactual;
     }
 
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
+    public void setFechaactual(LocalDateTime fechaactual) {
+        this.fechaactual = fechaactual;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     public Double getSaldoini() {

@@ -24,7 +24,7 @@ public class Tarjeta {
     private String tipo;
 
     @Column(name="estado_tarjeta" , nullable = false)
-    private String estadoTarjeta;
+    private Estado estadoTarjeta;
 
     @Column(name="limite")
     private Integer limite;
@@ -32,7 +32,7 @@ public class Tarjeta {
     public Tarjeta() {
     }
 
-    public Tarjeta(Long ccv, LocalDateTime fechaExpedicion, LocalDateTime fechaExpiracion, String tipo, String estadoTarjeta, Integer limite) {
+    public Tarjeta(Long ccv, LocalDateTime fechaExpedicion, LocalDateTime fechaExpiracion, String tipo, Estado estadoTarjeta, Integer limite) {
         this.ccv = ccv;
         this.fechaExpedicion = fechaExpedicion;
         this.fechaExpiracion = fechaExpiracion;
@@ -77,11 +77,15 @@ public class Tarjeta {
         this.tipo = tipo;
     }
 
-    public String getEstadoTarjeta() {
+    public void setNumeroTarjeta(Long numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
+    }
+
+    public Estado getEstadoTarjeta() {
         return estadoTarjeta;
     }
 
-    public void setEstadoTarjeta(String estadoTarjeta) {
+    public void setEstadoTarjeta(Estado estadoTarjeta) {
         this.estadoTarjeta = estadoTarjeta;
     }
 
