@@ -1,5 +1,7 @@
 package com.ingenia.banca.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -9,24 +11,31 @@ public class Tarjeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="numero_tarjeta")
+    @ApiModelProperty("Clave primaria tipo Long")
     private Long numeroTarjeta;
 
     @Column(name="ccv"  , nullable = false)
+    @ApiModelProperty("Ccv tipo Long not nullable")
     private Long ccv;
 
     @Column(name="fecha_expedicion" , nullable = false)
+    @ApiModelProperty("fechaExpedicion tipo LocalDateTime not nullable")
     private LocalDateTime fechaExpedicion;
 
     @Column(name="fecha_expiracion" , nullable = false)
+    @ApiModelProperty("fecha_expiracion tipo LocalDateTime not nullable")
     private LocalDateTime fechaExpiracion;
 
     @Column(name="tipo" , nullable = false)
+    @ApiModelProperty("tipo tipo String not nullable")
     private String tipo;
 
     @Column(name="estado_tarjeta" , nullable = false)
+    @ApiModelProperty("estado_tarjeta tipo Estado not nullable")
     private Estado estadoTarjeta;
 
     @Column(name="limite")
+    @ApiModelProperty("limite tipo Integer ")
     private Integer limite;
 
     public Tarjeta() {

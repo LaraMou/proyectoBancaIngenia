@@ -10,12 +10,12 @@ import java.util.List;
 public class Categoria {
 
     @Id
-    @ApiModelProperty("Clave primaria Long")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("Clave primaria tipo Long")
     private Long id;
 
     @Column(name = "nombre" , nullable = false)
-    @ApiModelProperty("Formato texto nombre")
+    @ApiModelProperty("Formato texto no nulo")
     private String nombre;
 
 
