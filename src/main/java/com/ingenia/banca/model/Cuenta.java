@@ -127,6 +127,22 @@ public class Cuenta {
         this.usuarios = usuarios;
     }
 
+    public List<Tarjeta> getListaTarjetas() {
+        return listaTarjetas;
+    }
+
+    public void setListaTarjetas(List<Tarjeta> listaTarjetas) {
+        this.listaTarjetas = listaTarjetas;
+    }
+
+    public List<Movimiento> getListaMovimientos() {
+        return listaMovimientos;
+    }
+
+    public void setListaMovimientos(List<Movimiento> listaMovimientos) {
+        this.listaMovimientos = listaMovimientos;
+    }
+
     @Override
     public String toString() {
         return "Cuenta{" +

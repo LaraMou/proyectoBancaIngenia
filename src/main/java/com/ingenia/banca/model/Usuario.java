@@ -96,7 +96,7 @@ public class Usuario {
     @JoinTable(
             name = "usuario_cuenta",
             joinColumns = {@JoinColumn(name="usuario_id", referencedColumnName = "nif")},
-            inverseJoinColumns = {@JoinColumn(name="cuenta_id", referencedColumnName = "numero_cuenta")}
+            inverseJoinColumns = {@JoinColumn(name="cuenta_id", referencedColumnName = "numerocuenta")}
     )
     @JsonIgnoreProperties("usuarios")
     private List<Cuenta> cuentas = new ArrayList<>();

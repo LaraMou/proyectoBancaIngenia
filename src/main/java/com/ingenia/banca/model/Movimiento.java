@@ -40,10 +40,10 @@ public class Movimiento {
     /**
      * Relación Categorias y movimientos n-n
      */
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToMany
     @ApiModelProperty("Entidad relacionada many to many categorias")
     @JoinTable(
-            name = "movimiento_cuenta",
+            name = "movimiento_categoria",
             joinColumns = {@JoinColumn(name="movimiento_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name="categoria_id", referencedColumnName = "id")}
     )
@@ -65,5 +65,69 @@ public class Movimiento {
         this.fechaValor = fechaValor;
         this.descripcion = descripcion;
         this.concepto = concepto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Double importe) {
+        this.importe = importe;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalDateTime getFechaValor() {
+        return fechaValor;
+    }
+
+    public void setFechaValor(LocalDateTime fechaValor) {
+        this.fechaValor = fechaValor;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getConcepto() {
+        return concepto;
+    }
+
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 }

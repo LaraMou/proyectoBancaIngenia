@@ -1,4 +1,4 @@
 package com.ingenia.banca.dao;
 
-public interface UserDao {
+public interface UsuarioDao {
 }
