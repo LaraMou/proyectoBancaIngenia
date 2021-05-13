@@ -39,6 +39,13 @@ public class Cuenta {
     @Column(name= "saldo_actual",nullable = false)
     private Double importeactual;
 
+    @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ApiModelProperty("Tarjetas en cada cuenta")
+    private List<Tarjeta> listaTarjetas;
+
+    @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ApiModelProperty("Movimientos de la cuenta")
+    private List<Movimiento> listaMovimientos;
 
     @ManyToMany(mappedBy = "cuentas", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Usuario> usuarios = new ArrayList<>();

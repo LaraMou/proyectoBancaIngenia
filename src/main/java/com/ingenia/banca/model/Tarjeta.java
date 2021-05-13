@@ -1,5 +1,6 @@
 package com.ingenia.banca.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -37,6 +38,12 @@ public class Tarjeta {
     @Column(name="limite")
     @ApiModelProperty("limite tipo Integer ")
     private Integer limite;
+
+    @ManyToOne()
+    @JoinColumn(name ="cuenta_id")
+    @JsonIgnore
+    @ApiModelProperty("Cuenta relativa a la tarjeta")
+    private Cuenta cuenta;
 
     public Tarjeta() {
     }

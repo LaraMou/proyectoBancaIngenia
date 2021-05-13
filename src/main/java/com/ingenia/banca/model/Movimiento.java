@@ -1,5 +1,6 @@
 package com.ingenia.banca.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -49,6 +50,11 @@ public class Movimiento {
     @JsonIgnoreProperties("movimientos")
     private List<Categoria> categorias = new ArrayList<>();
 
+    @ManyToOne()
+    @JsonIgnore
+    @JoinColumn(name = "cuenta_id")
+    @ApiModelProperty("Cuenta relativa al movimiento")
+    private Cuenta cuenta;
 
     public Movimiento() {
     }
