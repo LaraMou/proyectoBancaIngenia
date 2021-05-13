@@ -13,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,13 +45,13 @@ public class Usuario {
     @NotNull
     @ApiModelProperty("Formato Numerico. No puede ser nulo")
     @Column(name="telefono", nullable = false)
-    private String telefono;
+    private Long telefono;
 
     @Email
     @ApiModelProperty("Formato texto. No puede ser nulo")
     @NotNull
     @Size(min = 5, max = 254)
-    @Column(name="email",length = 254, unique = true)
+    @Column(name="email",length = 254, unique = true,nullable = false)
     private String email;
     //Datos domicilio
     @NotNull
@@ -90,7 +91,7 @@ public class Usuario {
     private Instant lastModifiedDate = Instant.now();
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
     @ApiModelProperty("Entidad relacionada many to many cuentas")
     @JoinTable(
             name = "usuario_cuenta",
@@ -103,7 +104,8 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String primerapellido, String segundoapellido, LocalDate fechanacimiento, String telefono, String email, Interviniente interviniente, Instant createdDate, Instant lastModifiedDate) {
+    public Usuario(String nif, String nombre, String primerapellido, String segundoapellido, LocalDate fechanacimiento, Long telefono, String email, Interviniente interviniente) {
+        this.nif = nif;
         this.nombre = nombre;
         this.primerapellido = primerapellido;
         this.segundoapellido = segundoapellido;
@@ -111,8 +113,6 @@ public class Usuario {
         this.telefono = telefono;
         this.email = email;
         this.interviniente = interviniente;
-        this.createdDate = createdDate;
-        this.lastModifiedDate = lastModifiedDate;
     }
 
     public String getNif() {
@@ -155,11 +155,11 @@ public class Usuario {
         this.fechanacimiento = fechanacimiento;
     }
 
-    public String getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
@@ -233,5 +233,19 @@ public class Usuario {
 
     public void setCuentas(List<Cuenta> cuentas) {
         this.cuentas = cuentas;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nif='" + nif + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", primerapellido='" + primerapellido + '\'' +
+                ", segundoapellido='" + segundoapellido + '\'' +
+                ", fechanacimiento=" + fechanacimiento +
+                ", telefono=" + telefono +
+                ", email='" + email + '\'' +
+                ", interviniente=" + interviniente +
+                '}';
     }
 }

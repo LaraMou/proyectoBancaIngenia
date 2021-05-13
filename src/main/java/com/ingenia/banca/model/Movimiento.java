@@ -1,7 +1,12 @@
 package com.ingenia.banca.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -9,101 +14,50 @@ public class Movimiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("Clave primaria Long")
     private Long id;
 
+    @ApiModelProperty("Double importe movimiento")
     @Column(name="importe" , nullable = false)
     private Double importe;
 
     @Column(name="fecha" , nullable = false)
+    @ApiModelProperty("Formato tipo fecha:yyyy-mm-dd-hh-mm")
     private LocalDateTime fecha;
 
     @Column(name="fecha_valor" , nullable = false)
+    @ApiModelProperty("Formato tipo fecha:yyyy-mm-dd-hh-mm")
     private LocalDateTime fechaValor;
 
     @Column(name="descripcion")
+    @ApiModelProperty("Formato texto")
     private String descripcion;
-
+    @ApiModelProperty("Formato texto")
     @Column(name="concepto")
     private String concepto;
 
-    @Column(name="historico_movimiento")
-    @ElementCollection
-    private Map<Double,String> historicoMovimiento ;
+    /**
+     * Relación Categorias y movimientos n-n
+     */
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @ApiModelProperty("Entidad relacionada many to many categorias")
+    @JoinTable(
+            name = "movimiento_cuenta",
+            joinColumns = {@JoinColumn(name="movimiento_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name="categoria_id", referencedColumnName = "id")}
+    )
+    @JsonIgnoreProperties("movimientos")
+    private List<Categoria> categorias = new ArrayList<>();
+
 
     public Movimiento() {
     }
 
-    public Movimiento(Double importe, LocalDateTime fecha, LocalDateTime fechaValor, String descripcion, String concepto, Map<Double, String> historicoMovimiento) {
+    public Movimiento(Double importe, LocalDateTime fecha, LocalDateTime fechaValor, String descripcion, String concepto) {
         this.importe = importe;
         this.fecha = fecha;
         this.fechaValor = fechaValor;
         this.descripcion = descripcion;
         this.concepto = concepto;
-        this.historicoMovimiento = historicoMovimiento;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Double getImporte() {
-        return importe;
-    }
-
-    public void setImporte(Double importe) {
-        this.importe = importe;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-    public LocalDateTime getFechaValor() {
-        return fechaValor;
-    }
-
-    public void setFechaValor(LocalDateTime fechaValor) {
-        this.fechaValor = fechaValor;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getConcepto() {
-        return concepto;
-    }
-
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
-    }
-
-    public Map<Double, String> getHistoricoMovimiento() {
-        return historicoMovimiento;
-    }
-
-    public void setHistoricoMovimiento(Map<Double, String> historicoMovimiento) {
-        this.historicoMovimiento = historicoMovimiento;
-    }
-
-    @Override
-    public String toString() {
-        return "Operation{" +
-                "id=" + id +
-                ", importe=" + importe +
-                ", fecha=" + fecha +
-                ", fechaValor=" + fechaValor +
-                ", descripcion='" + descripcion + '\'' +
-                ", concepto='" + concepto + '\'' +
-                ", historicoMovimiento=" + historicoMovimiento +
-                '}';
     }
 }
