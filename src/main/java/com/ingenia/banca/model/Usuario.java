@@ -60,6 +60,14 @@ public class Usuario {
     private String ciudad;
     @NotNull
     @ApiModelProperty("Formato texto. No puede ser nulo")
+    @Column(name="direccion")
+    private String direccion;
+    @NotNull
+    @ApiModelProperty("Formato numerico. No puede ser nulo")
+    @Column(name="codigo_postal")
+    private Long codigopostal;
+    @NotNull
+    @ApiModelProperty("Formato texto. No puede ser nulo")
     @Column(name="pais_origen")
     private String pais;
     //Otros datos
@@ -201,6 +209,22 @@ public class Usuario {
 
     public void setOcupacion(String ocupacion) {
         this.ocupacion = ocupacion;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Long getCodigopostal() {
+        return codigopostal;
+    }
+
+    public void setCodigopostal(Long codigopostal) {
+        this.codigopostal = codigopostal;
     }
 
     public String getGenero() {

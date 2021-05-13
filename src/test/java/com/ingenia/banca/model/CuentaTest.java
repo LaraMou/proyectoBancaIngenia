@@ -14,8 +14,7 @@ import java.util.List;
 
 @SpringBootTest
 class CuentaTest {
-    @Mock
-    Estado estado;
+
     @Mock
     CuentaRepository cuentaRepository;
     @Test

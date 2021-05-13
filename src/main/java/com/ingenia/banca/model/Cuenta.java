@@ -14,9 +14,6 @@ public class Cuenta {
     @Id
     @ApiModelProperty("Clave primaria. Tipo long")
     private Long numerocuenta;
-
-
-    @ApiModelProperty("Formato Fecha")
     @NotNull
     private LocalDateTime fechaapertura;
 
@@ -31,12 +28,12 @@ public class Cuenta {
     @ApiModelProperty("Boolean estado cuenta: Activo/Inactivo")
     private Estado estado;
     @ApiModelProperty("Double Saldo inicial")
-    @NotNull
-    @Column(name= "saldo_inicial", nullable = false)
+    //@NotNull
+    @Column(name= "saldo_inicial")
     private Double importeinicial;
     @ApiModelProperty("Double Saldo actual")
     @NotNull
-    @Column(name= "saldo_actual",nullable = false)
+    @Column(name= "saldo_actual")
     private Double importeactual;
 
     @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -62,6 +59,8 @@ public class Cuenta {
         this.importeinicial = importeinicial;
         this.importeactual = importeactual;
     }
+
+
 
     public LocalDateTime getFechacontable() {
         return fechacontable;
