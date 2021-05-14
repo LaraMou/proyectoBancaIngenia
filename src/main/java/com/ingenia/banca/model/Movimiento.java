@@ -52,7 +52,7 @@ public class Movimiento {
 
     @ManyToOne()
     @JsonIgnore
-    @JoinColumn(name = "cuenta_id")
+    @JoinColumn(name = "numerocuenta")
     @ApiModelProperty("Cuenta relativa al movimiento")
     private Cuenta cuenta;
 

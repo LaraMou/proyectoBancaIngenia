@@ -3,13 +3,11 @@ package com.ingenia.banca.config;
 import com.ingenia.banca.security.JwtAuthEntryPoint;
 import com.ingenia.banca.security.JwtRequestFilter;
 import com.ingenia.banca.services.impl.UserDetailsServiceImpl;
-import com.ingenia.banca.security.JwtAuthEntryPoint;
-import com.ingenia.banca.security.JwtRequestFilter;
-import com.ingenia.banca.services.impl.UserDetailsServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

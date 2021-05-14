@@ -1,10 +1,11 @@
 package com.ingenia.banca.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +13,34 @@ import java.util.List;
 @Entity
 public class Cuenta {
     @Id
-    @ApiModelProperty("Clave primaria. Tipo long")
+    @ApiModelProperty("Clave primaria. Long máx : 10")
+    @Column(length=10)
     private Long numerocuenta;
+    //datos cuenta IBAN
+    @ApiModelProperty("Codigo IBAN: codigo pais: Long máx 2 ")
+    @Column(length=2)
+    private Long codpais;
+    @ApiModelProperty("Codigo IBAN: digito control:Long máx 2 ")
+    @Column(length=2)
+    private Long digitocontrol;
+    @ApiModelProperty("Codigo IBAN: entidad  Long máx : 4")
+    @Column(length=4)
+    private Long entidad;
+    @ApiModelProperty("Codigo IBAN: oficina Long máx : 4")
+    @Column(length=4)
+    private Long oficina;
+
+
+    private String tipocuenta;
     @NotNull
-    private LocalDateTime fechaapertura;
+    private LocalDate fechaapertura;
 
     @ApiModelProperty("Formato Fecha")
     @NotNull
-    private LocalDateTime fechaactual;
+    private LocalDate fechaactual;
     @ApiModelProperty("Formato Fecha Contable: es aquella en que se apunta la operación,")
     @NotNull
-    private LocalDateTime fechacontable;
+    private LocalDate fechacontable;
 
 
     @ApiModelProperty("Boolean estado cuenta: Activo/Inactivo")
@@ -36,21 +54,25 @@ public class Cuenta {
     @Column(name= "saldo_actual")
     private Double importeactual;
 
+
     @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
     @ApiModelProperty("Tarjetas en cada cuenta")
     private List<Tarjeta> listaTarjetas;
 
     @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
     @ApiModelProperty("Movimientos de la cuenta")
+    @JsonIgnore
     private List<Movimiento> listaMovimientos;
 
     @ManyToMany(mappedBy = "cuentas", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Usuario> usuarios = new ArrayList<>();
 
+
+
     public Cuenta() {
     }
 
-    public Cuenta(Long numerocuenta, LocalDateTime fechaapertura, LocalDateTime fechaactual, LocalDateTime fechacontable, Estado estado, Double importeinicial, Double importeactual) {
+    public Cuenta(Long numerocuenta, LocalDate fechaapertura, LocalDate fechaactual, LocalDate fechacontable, Estado estado, Double importeinicial, Double importeactual) {
         this.numerocuenta = numerocuenta;
         this.fechaapertura = fechaapertura;
         this.fechaactual = fechaactual;
@@ -62,11 +84,11 @@ public class Cuenta {
 
 
 
-    public LocalDateTime getFechacontable() {
+    public LocalDate getFechacontable() {
         return fechacontable;
     }
 
-    public void setFechacontable(LocalDateTime fechacontable) {
+    public void setFechacontable(LocalDate fechacontable) {
         this.fechacontable = fechacontable;
     }
 
@@ -78,19 +100,19 @@ public class Cuenta {
         this.numerocuenta = num_cuenta;
     }
 
-    public LocalDateTime getFechaapertura() {
+    public LocalDate getFechaapertura() {
         return fechaapertura;
     }
 
-    public void setFechaapertura(LocalDateTime fechaapertura) {
+    public void setFechaapertura(LocalDate fechaapertura) {
         this.fechaapertura = fechaapertura;
     }
 
-    public LocalDateTime getFechaactual() {
+    public LocalDate getFechaactual() {
         return fechaactual;
     }
 
-    public void setFechaactual(LocalDateTime fechaactual) {
+    public void setFechaactual(LocalDate fechaactual) {
         this.fechaactual = fechaactual;
     }
 
@@ -124,6 +146,46 @@ public class Cuenta {
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public Long getCodpais() {
+        return codpais;
+    }
+
+    public void setCodpais(Long codpais) {
+        this.codpais = codpais;
+    }
+
+    public Long getDigitocontrol() {
+        return digitocontrol;
+    }
+
+    public void setDigitocontrol(Long digitocontrol) {
+        this.digitocontrol = digitocontrol;
+    }
+
+    public Long getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(Long entidad) {
+        this.entidad = entidad;
+    }
+
+    public Long getOficina() {
+        return oficina;
+    }
+
+    public void setOficina(Long oficina) {
+        this.oficina = oficina;
+    }
+
+    public String getTipocuenta() {
+        return tipocuenta;
+    }
+
+    public void setTipocuenta(String tipocuenta) {
+        this.tipocuenta = tipocuenta;
     }
 
     public List<Tarjeta> getListaTarjetas() {

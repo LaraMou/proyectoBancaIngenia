@@ -66,9 +66,9 @@ public class CuentaController {
      * @return List<Cuenta>
      */
     @GetMapping("/accounts")
-    @ApiOperation("Encuentra todos los empleados sin paginación")
+    @ApiOperation("Encuentra todas las cuentas sin paginación")
     public List<Cuenta> findAccounts(){
-        log.debug("Rest request all Users");
+        log.debug("Rest request all Accoutns");
         return cuentaService.findAll();
     }
 
@@ -78,7 +78,7 @@ public class CuentaController {
      * @return ResponseEntity<Cuenta>
      */
     @GetMapping("/accounts/{numerocuenta}")
-    public ResponseEntity<Cuenta> findOneAccount(@ApiParam("Clave primaria de la cuenta en formato nif: [[A-H][J-N][P-S]UVW][0-9]{7}[0-9A-J]")@PathVariable Long numerocuenta) {
+    public ResponseEntity<Cuenta> findOneAccount(@ApiParam("Clave primaria de la cuenta Long size 10")@PathVariable Long numerocuenta) {
         log.debug("Rest request a Cuenta with id: "+numerocuenta);
         Optional<Cuenta> userOpt = cuentaService.findCuentaByNumerocuenta(numerocuenta);
         if (userOpt.isPresent())

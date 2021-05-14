@@ -2,10 +2,7 @@ package com.ingenia.banca;
 
 import com.ingenia.banca.dao.CuentaDao;
 import com.ingenia.banca.dao.UsuarioDao;
-import com.ingenia.banca.model.Cuenta;
-import com.ingenia.banca.model.Estado;
-import com.ingenia.banca.model.Interviniente;
-import com.ingenia.banca.model.Usuario;
+import com.ingenia.banca.model.*;
 import com.ingenia.banca.repository.CuentaRepository;
 import com.ingenia.banca.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,13 +47,26 @@ public class BancaApplication implements CommandLineRunner {
          * Creación cuenta y asociación
          */
         List<Cuenta> cuentas = new ArrayList<>();
-        cuentas.add( new Cuenta(1234123401123456789l,LocalDateTime.of(2000,02,02,00,00),
-                LocalDateTime.now(),LocalDateTime.of(2021,05,15,00,00),Estado.ACTIVO,
+        cuentas.add( new Cuenta(1234123401123456789l,LocalDate.of(2000,02,02),
+                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
                 1000D,2000D));
-        cuentas.add( new Cuenta(234123401123456789l,LocalDateTime.of(2000,02,02,00,00),
-                LocalDateTime.now(),LocalDateTime.of(2021,05,15,00,00),Estado.ACTIVO,
+        cuentas.add( new Cuenta(234123401123456789l,LocalDate.of(2000,02,02),
+                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
                 1000D,2000D));
 
         usuario.setCuentas(cuentas);
-    }
+
+        /**
+         * Creación cuentas Y MOVMIENTO
+         */
+
+//        Cuenta cuenta1 = new Cuenta(678L,LocalDate.of(2000,02,02,00,00),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
+//
+//
+//        List<Movimiento> movimientos = new ArrayList<>();
+//        movimientos.add(new Movimiento(1000d, LocalDate.now(),LocalDate.now(),"Gasolinera BP estacion.","Gasolinera BP"));
+//
+//        cuenta1.setListaMovimientos(movimientos);
+//        cuentaRepository.save(cuenta1);
+  }
 }
