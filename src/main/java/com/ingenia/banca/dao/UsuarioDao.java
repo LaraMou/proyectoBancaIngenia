@@ -8,6 +8,7 @@ public interface UsuarioDao {
 
     Optional<Usuario> findUsuarioByNif(String nif);
 
+     void deleteUsuario(String nif);
 
 
 }

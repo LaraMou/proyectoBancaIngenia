@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 public class Cuenta {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("Clave primaria. Long máx : 10")
     @Column(length=10)
     private Long numerocuenta;

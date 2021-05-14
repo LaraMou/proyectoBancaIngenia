@@ -2,10 +2,12 @@ package com.ingenia.banca.dao.impl;
 
 import com.ingenia.banca.dao.CuentaDao;
 import com.ingenia.banca.model.Cuenta;
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -31,4 +33,10 @@ public class CuentaDaoImpl implements CuentaDao {
         }
         return Optional.empty();
     }
+    // todo
+
+
+
+
+
 }

@@ -22,7 +22,12 @@ import java.util.List;
 public class Usuario {
 
     @Id
-    @ApiModelProperty("Clave Primaria, Formato texto patter: [[A-H][J-N][P-S]UVW][0-9]{7}[0-9A-J]")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("Clave primaria Long")
+    private Long id;
+
+    @ApiModelProperty("Formato texto patter: [[A-H][J-N][P-S]UVW][0-9]{7}[0-9A-J]")
+    @Column(nullable = false,unique = true)
     private String nif;
     //Datos personales
     @ApiModelProperty("Formato texto No puede ser nulo")
@@ -103,7 +108,7 @@ public class Usuario {
     @ApiModelProperty("Entidad relacionada many to many cuentas")
     @JoinTable(
             name = "usuario_cuenta",
-            joinColumns = {@JoinColumn(name="usuario_id", referencedColumnName = "nif")},
+            joinColumns = {@JoinColumn(name="usuario_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name="cuenta_id", referencedColumnName = "numerocuenta")}
     )
     @JsonIgnoreProperties("usuarios")
@@ -121,6 +126,14 @@ public class Usuario {
         this.telefono = telefono;
         this.email = email;
         this.interviniente = interviniente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNif() {

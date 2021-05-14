@@ -33,28 +33,28 @@ public class BancaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Usuario usuario = new Usuario("12345678b",
-                "TEST1","AAAA","BBBB",
-                LocalDate.of(2000,02,02),
-                666556655L,"m@mailto.com", Interviniente.TITULAR);
-        usuarioRepository.save(usuario);
-
-        Optional<Usuario> usuariodb = usuarioDao.findUsuarioByNif("12345678b");
-        if(usuariodb.isPresent())
-            System.out.println(usuariodb.get().getNif());
-
-        /**
-         * Creación cuenta y asociación
-         */
-        List<Cuenta> cuentas = new ArrayList<>();
-        cuentas.add( new Cuenta(1234123401123456789l,LocalDate.of(2000,02,02),
-                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
-                1000D,2000D));
-        cuentas.add( new Cuenta(234123401123456789l,LocalDate.of(2000,02,02),
-                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
-                1000D,2000D));
-
-        usuario.setCuentas(cuentas);
+//        Usuario usuario = new Usuario("12345678b",
+//                "TEST1","AAAA","BBBB",
+//                LocalDate.of(2000,02,02),
+//                666556655L,"m@mailto.com", Interviniente.TITULAR);
+//        usuarioRepository.save(usuario);
+//
+//        Optional<Usuario> usuariodb = usuarioDao.findUsuarioByNif("12345678b");
+//        if(usuariodb.isPresent())
+//            System.out.println(usuariodb.get().getNif());
+//
+//        /**
+//         * Creación cuenta y asociación
+//         */
+//        List<Cuenta> cuentas = new ArrayList<>();
+//        cuentas.add( new Cuenta(1234123401123456789l,LocalDate.of(2000,02,02),
+//                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
+//                1000D,2000D));
+//        cuentas.add( new Cuenta(234123401123456789l,LocalDate.of(2000,02,02),
+//                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
+//                1000D,2000D));
+//
+//        usuario.setCuentas(cuentas);
 
         /**
          * Creación cuentas Y MOVMIENTO

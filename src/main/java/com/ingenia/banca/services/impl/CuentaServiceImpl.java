@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,11 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public Cuenta saveCuenta(Cuenta cuenta) {
-        return null;
+        log.info("createTag");
+        if(ObjectUtils.isEmpty(cuenta))
+            return null;
+
+        return cuentaRepository.save(cuenta);
     }
 
 }

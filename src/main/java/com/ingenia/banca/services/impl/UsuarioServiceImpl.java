@@ -49,7 +49,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public void deleteUserByNif(String nif) {
-        usuarioRepository.deleteUsuarioByNif(nif);
+        usuarioDao.deleteUsuario(nif);
     }
 
 //    @Override
