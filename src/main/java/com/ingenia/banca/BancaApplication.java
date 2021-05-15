@@ -1,10 +1,13 @@
 package com.ingenia.banca;
 
 import com.ingenia.banca.dao.CuentaDao;
+import com.ingenia.banca.dao.MovimientoDAO;
 import com.ingenia.banca.dao.UsuarioDao;
 import com.ingenia.banca.model.*;
 import com.ingenia.banca.repository.CuentaRepository;
+import com.ingenia.banca.repository.MovimientoRepository;
 import com.ingenia.banca.repository.UsuarioRepository;
+import com.ingenia.banca.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +28,12 @@ public class BancaApplication implements CommandLineRunner {
     CuentaRepository cuentaRepository;
     @Autowired
     CuentaDao cuentaDao;
+    @Autowired
+    MovimientoRepository movimientoRepository;
+    @Autowired
+    MovimientoDAO movimientoDAO;
+    @Autowired
+    CategoriaService categoriaService;
 
 
     public static void main(String[] args) {
@@ -67,20 +76,48 @@ public class BancaApplication implements CommandLineRunner {
         movimientos.add(movimiento1);
         movimientos.add(movimiento2);
         movimientos.add(movimiento3);
-         Cuenta cuenta1 = new Cuenta(678L,LocalDate.of(2000,02,02),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
+         Cuenta cuenta1 = new Cuenta(LocalDate.of(2000,02,02),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
          cuenta1.setListaMovimientos(movimientos);
         cuentaRepository.save(cuenta1);
 
         /**
          * Asocio Usuario anterior a la cuenta
          // TODO
-         List<Cuenta> cuentas = new ArrayList<>();
-         cuentas.add(cuenta1);
-         usuario.setCuentas(cuentas);
-         cuentaRepository.save(cuenta1);
-
          */
+        List<Cuenta> cuentas = new ArrayList<>();
+        Cuenta cuenta2 = new Cuenta(LocalDate.of(2000,02,02),
+                LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
+        Cuenta cuenta3 = new Cuenta(LocalDate.of(2000,02,02),
+                LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
+        Cuenta cuenta4 = new Cuenta(LocalDate.of(2000,02,02),
+                LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
+        cuentas.add(cuenta2);
+        cuentas.add(cuenta3);
+        cuentas.add(cuenta4);
+        usuario.setCuentas(cuentas);
+        usuarioRepository.save(usuario);
 
+        /**
+         * Asociar movimientos a categorias
+         *
+//         */
+//
+//        Categoria restaurantes = new Categoria("RESTAURANTES");
+//        Categoria categoria2 = new Categoria("GASTOS ESCOLARES");
+//        Categoria categoria3 = new Categoria("GASOLINERAS");
+//        Categoria categoria4 = new Categoria("RECIBOS");
+//
+//        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurante Salomon","Restaurante tarje***");
+//        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurant Marujita Salita","Pago tarje***");
+//        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Maria La portuguesa","REst. Pago tarje***");
+//
+//        List<Movimiento> movrestaurants = new ArrayList<>();
+//        movrestaurants.add(movrestau1);
+//        movrestaurants.add(movrestau2);
+//        movrestaurants.add(movrestau3);
+//
+//        restaurantes.setMovimientos(movrestaurants);
+//        categoriaService.saveCategoria(restaurantes);
 
-  }
+    }
 }

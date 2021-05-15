@@ -73,8 +73,7 @@ public class Cuenta {
     public Cuenta() {
     }
 
-    public Cuenta(Long numerocuenta, LocalDate fechaapertura, LocalDate fechaactual, LocalDate fechacontable, Estado estado, Double importeinicial, Double importeactual) {
-        this.numerocuenta = numerocuenta;
+    public Cuenta( LocalDate fechaapertura, LocalDate fechaactual, LocalDate fechacontable, Estado estado, Double importeinicial, Double importeactual) {
         this.fechaapertura = fechaapertura;
         this.fechaactual = fechaactual;
         this.fechacontable = fechacontable;

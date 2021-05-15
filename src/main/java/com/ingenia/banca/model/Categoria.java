@@ -20,7 +20,8 @@ public class Categoria {
 
 
     @ApiModelProperty("Listado cagetorias relacionadas movimiento")
-    @ManyToMany(mappedBy = "categorias", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany()
+    @JoinColumn(name = "movimiento_id")
     private List<Movimiento> movimientos = new ArrayList<>();
 
     public Categoria() {

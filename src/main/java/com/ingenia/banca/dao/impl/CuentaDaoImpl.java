@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 import java.util.Optional;
 @Repository
 public class CuentaDaoImpl implements CuentaDao {
@@ -31,6 +32,16 @@ public class CuentaDaoImpl implements CuentaDao {
             return Optional.of(item);
 
         }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Cuenta> findAll(Integer paginacion, Integer limite) {
+        return null;
+    }
+
+    @Override
+    public Optional<Cuenta> calcularSaldo(Double saldo) {
         return Optional.empty();
     }
     // todo

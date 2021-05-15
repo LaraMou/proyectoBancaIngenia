@@ -87,6 +87,6 @@ public class CuentaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @DeleteMapping("/accounts/{id}")
-    @ApiOperation("Borrado de usuario por nif")
-    public void deleteUser(@PathVariable Long id) {cuentaService.deleteById(id);}
+    @ApiOperation("Borrado de categoria por id")
+    public void deleteCategoria(@PathVariable Long id) {cuentaService.deleteById(id);}
 }

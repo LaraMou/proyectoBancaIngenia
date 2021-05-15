@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -39,7 +40,20 @@ public class UsuarioDaoImpl implements UsuarioDao {
         return Optional.empty();
     }
 
+    @Override
+    public List<Usuario> findAll(Integer paginacion, Integer limite) {
+        return null;
+    }
 
+    @Override
+    public Optional<Usuario> findUsuarioByInterviniente(String interviniente) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Usuario> findAllByInterviniente(String interviniente, Integer paginacion, Integer limite) {
+        return null;
+    }
 
 
 }

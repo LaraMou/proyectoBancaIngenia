@@ -38,17 +38,13 @@ public class Movimiento {
     private String concepto;
 
     /**
-     * Relación Categorias y movimientos n-n
+     * Relación Categorias y movimientos n-1
      */
-    @ManyToMany
-    @ApiModelProperty("Entidad relacionada many to many categorias")
-    @JoinTable(
-            name = "movimiento_categoria",
-            joinColumns = {@JoinColumn(name="movimiento_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name="categoria_id", referencedColumnName = "id")}
-    )
-    @JsonIgnoreProperties("movimientos")
-    private List<Categoria> categorias = new ArrayList<>();
+    @ManyToOne
+    @ApiModelProperty("Entidad relacionada many to one categorias")
+    @JoinColumn(name = "id_categoria")
+
+    private Categoria categoria;
 
     @ManyToOne()
     @JsonIgnore
@@ -115,12 +111,12 @@ public class Movimiento {
         this.concepto = concepto;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public Cuenta getCuenta() {
@@ -129,5 +125,16 @@ public class Movimiento {
 
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
+    }
+
+    @Override
+    public String toString() {
+        return "Movimiento{" +
+                "importe=" + importe +
+                ", fecha=" + fecha +
+                ", fechaValor=" + fechaValor +
+                ", descripcion='" + descripcion + '\'' +
+                ", concepto='" + concepto + '\'' +
+                '}';
     }
 }
