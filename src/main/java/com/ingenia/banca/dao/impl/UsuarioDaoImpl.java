@@ -39,12 +39,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         return Optional.empty();
     }
 
-    @Override
-    public void deleteUsuario(String nif) {
-        Query queryNative = manager.createNativeQuery("delete from usuario where nif =" +nif);
-        queryNative.executeUpdate();
-        usuarioRepository.delete(manager.find(Usuario.class,nif));
-    }
+
 
 
 }

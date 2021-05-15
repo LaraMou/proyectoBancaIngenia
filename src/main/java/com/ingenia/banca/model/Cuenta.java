@@ -60,7 +60,7 @@ public class Cuenta {
     @ApiModelProperty("Tarjetas en cada cuenta")
     private List<Tarjeta> listaTarjetas;
 
-    @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy= "cuenta")
     @ApiModelProperty("Movimientos de la cuenta")
     @JsonIgnore
     private List<Movimiento> listaMovimientos;

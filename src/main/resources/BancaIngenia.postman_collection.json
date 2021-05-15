@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "fa7471ce-7f9f-45d3-a459-29e5e780e7e5",
+		"name": "BancaIngenia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "GET : Recuperar todos los users sin paginacion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET : Recuperar todos los users sin paginacion Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/user/1234567k",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"user",
+								"1234567k"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET : Recuperar todos los users sin paginacion Copy 2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/1234567K",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"1234567K"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST : Crear usuarios",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"\",\r\n\"nif\": \"1234567m\",\r\n        \"nombre\": \"Usuario1\",\r\n        \"primerapellido\": \"Apellido Usuario1\",\r\n        \"segundoapellido\": \"Apellido2 Usuario1\",\r\n        \"fechanacimiento\": \"1960-05-12\",\r\n        \"telefono\": 666778899,\r\n        \"email\": \"usuari33@test.com\",\r\n        \"ciudad\": \"Málaga\",\r\n        \"direccion\": null,\r\n        \"codigopostal\": null,\r\n        \"pais\": \"España\",\r\n        \"interviniente\": \"TITULAR\",\r\n        \"ocupacion\": \"Sector Agrario\",\r\n        \"genero\": \"Masculino\",\r\n        \"cuentas\": [{\r\n            \"numerocuenta\":\"\"\r\n        }\r\n          \r\n        ]\r\n}\r\n ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT  Modificación Usuarios",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"4\",\r\n\"nif\": \"23456789K\",\r\n        \"nombre\": \"Usuario2\",\r\n        \"primerapellido\": \"Apellido Usuario2\",\r\n        \"segundoapellido\": \"Apellido2 Usuario2\",\r\n        \"fechanacimiento\": \"1960-05-12\",\r\n        \"telefono\": 666778899,\r\n        \"email\": \"usuari21@test.com\",\r\n        \"ciudad\": \"Málaga\",\r\n        \"direccion\": \"C/ Ronda\",\r\n        \"codigopostal\": 29888,\r\n        \"pais\": \"España\",\r\n        \"interviniente\": \"TITULAR\",\r\n        \"ocupacion\": \"Sector Agrario\",\r\n        \"genero\": \"Femininio\",\r\n        \"cuentas\": [\r\n            \r\n    {\r\n    \"id\": 4,\r\n    \"nif\": \"23456789K\",\r\n    \"nombre\": \"Usuario2\",\r\n    \"primerapellido\": \"Apellido Usuario2\",\r\n    \"segundoapellido\": \"Apellido2 Usuario2\",\r\n    \"fechanacimiento\": \"1960-05-12\",\r\n    \"telefono\": 666778899,\r\n    \"email\": \"usuari21@test.com\",\r\n    \"ciudad\": \"Málaga\",\r\n    \"direccion\": \"C/ Ronda\",\r\n    \"codigopostal\": 29888,\r\n    \"pais\": \"España\",\r\n    \"interviniente\": \"TITULAR\",\r\n    \"ocupacion\": \"Sector Agrario\",\r\n    \"genero\": \"Femininio\",\r\n    \"cuentas\": []\r\n}\r\n          \r\n        ]\r\n}\r\n ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuenta",
+			"item": [
+				{
+					"name": "DELETE: Borrar  cuenta por id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/accounts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Actualizar Cuenta con Usario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " \r\n    {\r\n        \"numerocuenta\": 1,\r\n        \"codpais\": 11,\r\n        \"digitocontrol\": 1,\r\n        \"entidad\": 12345,\r\n        \"oficina\": 1234,\r\n        \"tipocuenta\": \"PARTICULAR\",\r\n        \"fechaapertura\": \"2000-02-02\",\r\n        \"fechaactual\": \"2021-05-14\",\r\n        \"fechacontable\": \"2021-05-14\",\r\n        \"estado\": \"ACTIVO\",\r\n        \"importeinicial\": 1000.0,\r\n        \"importeactual\": 1000.0,\r\n        \"listaTarjetas\": [],\r\n        \"usuarios\": [\r\n            {\r\n                \"id\": 1\r\n            }\r\n        ]\r\n    }\r\n\r\n            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST: Crear cuenta crear cuentas con usuario asociado Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"numerocuenta\": \"\",\r\n        \"codpais\": 11,\r\n        \"digitocontrol\": 1,\r\n        \"entidad\": 12345,\r\n        \"oficina\": 1234,\r\n        \"tipocuenta\": \"PARTICULAR\",\r\n        \"fechaapertura\": \"2000-02-02\",\r\n        \"fechaactual\": \"2021-05-14\",\r\n        \"fechacontable\": \"2021-05-14\",\r\n        \"estado\": \"ACTIVO\",\r\n        \"importeinicial\": 1000.0,\r\n        \"importeactual\": 1000.0,\r\n\r\n        \"listaTarjetas\": [\r\n            {   \r\n                \"numeroTarjeta\":\"\",\r\n  \"ccv\": 0,\r\n  \"estadoTarjeta\": \"ACTIVO\",\r\n  \"fechaExpedicion\": \"2021-05-14T09:56:47.671Z\",\r\n  \"fechaExpiracion\": \"2021-05-14T09:56:47.671Z\",\r\n  \"limite\": 0,\r\n\r\n  \"tipo\": \"string\"\r\n}],\r\n \"usuarios\": [{\r\n     \"id\":\"\",\r\n     \"nif\":\"123456789B\",\r\n      \"direccion\": \"C/ Final\",\r\n      \"ciudad\": \"Madrid\",\r\n  \"codigopostal\": 28080,\r\n  \"email\": \"aa@test.com\",\r\n  \"fechanacimiento\": \"1971-05-15\",\r\n  \"genero\": \"masculino\",\r\n \r\n  \"interviniente\": \"TITULAR\",\r\n\r\n  \"nombre\": \"Vicente\",\r\n  \"ocupacion\": \"Sanitario\",\r\n  \"pais\": \"España\",\r\n  \"primerapellido\": \"Amigo\",\r\n  \"segundoapellido\": \"Flores\",\r\n  \"telefono\": 6522447788\r\n\r\n }]\r\n}\r\n\r\n            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET : Recuperar todas las cuentas sin paginacion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

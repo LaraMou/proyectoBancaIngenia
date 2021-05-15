@@ -47,13 +47,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.save(user);
     }
 
-    @Override
-    public void deleteUserByNif(String nif) {
-        usuarioDao.deleteUsuario(nif);
-    }
 
-//    @Override
-//    public void deleteById(Long id) {
-//        usuarioRepository.deleteById(nif);
-//    }
+    @Override
+    public void deleteById(Long id) {
+        usuarioRepository.deleteById(id);
+    }
 }

@@ -12,5 +12,5 @@ public interface UsuarioService {
 
      Usuario saveUser(Usuario user);
 
-     void deleteUserByNif(String nif);
+     void deleteById(Long id);
 }
