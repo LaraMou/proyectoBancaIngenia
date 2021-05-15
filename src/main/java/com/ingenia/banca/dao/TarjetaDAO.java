@@ -10,7 +10,7 @@ public interface TarjetaDAO {
 
     public Tarjeta updateTarjeta(Tarjeta tarjeta);
 
-    public void deleteTarjeta(Long numero_tarjeta);
+    public void deleteTarjeta(Long numeroTarjeta);
 
     public List<Tarjeta> findTarjetas();
 

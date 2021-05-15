@@ -52,7 +52,7 @@ public class TarjetaController {
      * @return ResponseEntity<Tarjeta>
      */
 
-    @PutMapping("/tarjetas")
+    @PutMapping("/tarjetas/{numerotarjeta}")
     @ApiOperation("Modificación de tarjetas")
     public ResponseEntity<Tarjeta>updateTarjeta(@RequestBody Tarjeta tarjeta) {
         log.debug("Modify Tarjeta");
@@ -60,14 +60,13 @@ public class TarjetaController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else{
-            Tarjeta tarjetaCreada = tarjetaService.updateTarjeta(tarjeta);
-            return ResponseEntity.ok().body(tarjetaCreada);
+            return ResponseEntity.ok().body(tarjetaService.updateTarjeta(tarjeta));
         }
     }
 
-    @DeleteMapping("tarjetas/{numero_tarjeta}")
+    @DeleteMapping("tarjetas/{numeroTarjeta}")
     @ApiOperation("Delete de una tarjeta")
-    public void deleteTarjeta(@PathVariable Long numero_tarjeta) {tarjetaService.deleteTarjeta(numero_tarjeta);}
+    public void deleteTarjeta(@PathVariable Long numeroTarjeta) {tarjetaService.deleteTarjeta(numeroTarjeta);}
 
 
     /**

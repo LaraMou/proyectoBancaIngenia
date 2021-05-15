@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public class TarjetaDAOImpl implements TarjetaDAO {
 
     @PersistenceContext
@@ -38,10 +37,8 @@ public class TarjetaDAOImpl implements TarjetaDAO {
 
     @Override
     public void deleteTarjeta(Long numeroTarjeta ){
-        Query queryNative = manager.createNativeQuery("delete from tarjetas where umero_tarjeta =" + numeroTarjeta);
-        queryNative.executeUpdate();
-        tarjetaRepository.delete(manager.find(Tarjeta.class,numeroTarjeta));
-    }
+        tarjetaRepository.delete(manager.find(Tarjeta.class,numeroTarjeta));}
+
 
     @Override
     public List<Tarjeta> findTarjetas() {
@@ -61,7 +58,7 @@ public class TarjetaDAOImpl implements TarjetaDAO {
     public Optional<Tarjeta> findOneTarjeta(Long numeroTarjeta) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Tarjeta> criteria = builder.createQuery(Tarjeta.class);
-        Root<Tarjeta> root = criteria.from(Tarjeta.class);
+        Root<Tarjeta> root =     criteria.from(Tarjeta.class);
 
         criteria.select(root);
         criteria.where(builder.equal(root.get("numeroTarjeta"), numeroTarjeta));

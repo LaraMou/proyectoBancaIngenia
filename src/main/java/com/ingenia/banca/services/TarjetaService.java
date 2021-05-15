@@ -1,10 +1,12 @@
 package com.ingenia.banca.services;
 
 import com.ingenia.banca.model.Tarjeta;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface TarjetaService {
 
     Tarjeta createTarjeta(Tarjeta tarjeta);
