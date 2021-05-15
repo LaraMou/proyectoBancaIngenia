@@ -89,26 +89,9 @@ public class UsuarioController {
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-//    @DeleteMapping("/users/{nif}")
-//    @ApiOperation("Borrado de usuario por nif")
-//    public ResponseEntity<?> delete(@ApiParam("String nif" )@PathVariable String nif) {
-//
-//        Map<String, Object> response = new HashMap<>();
-//
-//        try {
-//            Optional<Usuario> usuario = userService.findUsuarioByNif(nif);
-//            if(usuario.isPresent())
-//                userService.deleteUserByNif(nif);
-//
-//        } catch (DataAccessException e) {
-//            response.put("mensaje", "Error al eliminar el user de la base de datos");
-//            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-//            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//        response.put("mensaje", "El user eliminado con éxito!");
-//
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    @DeleteMapping("/users/{id}")
+    @ApiOperation("Borrado de usuario por nif")
+    public void deleteUser(@PathVariable Long id) {userService.delete(id);}
+
 
 }

@@ -17,7 +17,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final Logger log = LoggerFactory.getLogger(UsuarioServiceImpl.class);
     private final UsuarioRepository usuarioRepository;
     private final UsuarioDao usuarioDao;
-
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioDao usuarioDao) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioDao = usuarioDao;
@@ -48,12 +47,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void deleteUserByNif(String nif) {
-        usuarioDao.deleteUsuario(nif);
+    public void delete(Long id) {
+        usuarioRepository.deleteById(id);
+
     }
 
-//    @Override
-//    public void deleteById(Long id) {
-//        usuarioRepository.deleteById(nif);
-//    }
 }
