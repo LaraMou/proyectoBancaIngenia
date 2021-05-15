@@ -1,9 +1,9 @@
 package com.ingenia.banca.services;
 
 import com.ingenia.banca.model.Movimiento;
-import com.ingenia.banca.model.Tarjeta;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface  MovimientoService {
 
@@ -15,5 +15,5 @@ public interface  MovimientoService {
 
     List<Movimiento> findMovimientos();
 
-    Movimiento findOneMovimiento(Long id);
+    Optional<Movimiento> findOneMovimiento(Long id);
 }

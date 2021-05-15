@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "6a70996a-2dcc-4ac4-804a-a82f71192234",
+		"name": "ProyectoBancaIngenia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Movimientos",
+			"item": [
+				{
+					"name": "GetOneMovimiento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllMovimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMovimiento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/tarjetas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarjetas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateMovimiento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ccv\": 2,\r\n  \"estadoTarjeta\": \"ACTIVO\",\r\n  \"fechaExpedicion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"fechaExpiracion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"limite\": 0,\r\n  \"tipo\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/tarjetas/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarjetas",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateMovimiento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ccv\": 0,\r\n  \"estadoTarjeta\": \"ACTIVO\",\r\n  \"fechaExpedicion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"fechaExpiracion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"limite\": 0,\r\n  \"tipo\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/tarjetas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarjetas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tarjetas",
+			"item": [
+				{
+					"name": "CreateTarjeta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ccv\": 0,\r\n  \"estadoTarjeta\": \"ACTIVO\",\r\n  \"fechaExpedicion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"fechaExpiracion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"limite\": 0,\r\n  \"tipo\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/tarjetas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarjetas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTarjeta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ccv\": 2,\r\n  \"estadoTarjeta\": \"ACTIVO\",\r\n  \"fechaExpedicion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"fechaExpiracion\": \"2021-05-13T11:53:49.806Z\",\r\n  \"limite\": 0,\r\n  \"tipo\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/tarjetas/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarjetas",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTarjeta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/tarjetas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarjetas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllTarjetas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneTarjeta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,11 +1,8 @@
 package com.ingenia.banca.dao.impl;
 
 import com.ingenia.banca.dao.MovimientoDAO;
-import com.ingenia.banca.dao.TarjetaDAO;
 import com.ingenia.banca.model.Movimiento;
-import com.ingenia.banca.model.Tarjeta;
 import com.ingenia.banca.repository.MovimientoRepository;
-import com.ingenia.banca.repository.TarjetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +12,10 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-@Transactional
 public class MovimientoDAOImpl implements MovimientoDAO {
 
     @PersistenceContext
@@ -40,9 +36,7 @@ public class MovimientoDAOImpl implements MovimientoDAO {
 
     @Override
     public void deleteMovimiento(Long id ){
-        Query queryNative = manager.createNativeQuery("delete from movimientos where id =" + id);
-        queryNative.executeUpdate();
-        movimientoRepository.delete(manager.find(Movimiento.class,id));
+       movimientoRepository.delete(manager.find(Movimiento.class,id));
     }
 
     @Override
@@ -60,6 +54,15 @@ public class MovimientoDAOImpl implements MovimientoDAO {
     }
 
     @Override
-    public Movimiento findOneMovimiento(Long id) {return manager.find(Movimiento.class,id);}
+    public Optional<Movimiento> findOneMovimiento(Long id) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Movimiento> criteria = builder.createQuery(Movimiento.class);
+        Root<Movimiento> root =     criteria.from(Movimiento.class);
+
+        criteria.select(root);
+        criteria.where(builder.equal(root.get("id"), id));
+        return Optional.of(manager.createQuery(criteria).getSingleResult());
+
+    }
 
 }

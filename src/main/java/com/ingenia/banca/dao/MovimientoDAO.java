@@ -4,6 +4,7 @@ import com.ingenia.banca.model.Movimiento;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MovimientoDAO {
     public Movimiento createMovimiento(Movimiento movimiento);
@@ -14,6 +15,6 @@ public interface MovimientoDAO {
 
     public List<Movimiento> findMovimientos();
 
-    public Movimiento findOneMovimiento(Long id);
+    public Optional<Movimiento> findOneMovimiento(Long id);
 
 }

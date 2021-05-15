@@ -1,8 +1,7 @@
 package com.ingenia.banca.controller;
 
-import com.ingenia.banca.model.Cuenta;
 import com.ingenia.banca.model.Movimiento;
-import com.ingenia.banca.model.Usuario;
+import com.ingenia.banca.model.Tarjeta;
 import com.ingenia.banca.services.MovimientoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -16,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api")
@@ -42,7 +42,7 @@ public class MovimientoController {
     }
 
 
-    @PutMapping("/movimientos")
+    @PutMapping("/movimientos/{id}")
     @ApiOperation("Modificación de movimientos")
     public ResponseEntity<Movimiento>updateMovimiento(@RequestBody Movimiento movimiento) {
         log.debug("Modify Movimiento");
@@ -50,8 +50,7 @@ public class MovimientoController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else{
-            Movimiento movimientoCreado = movimientoService.updateMovimiento(movimiento);
-            return ResponseEntity.ok().body(movimientoCreado);
+            return ResponseEntity.ok().body( movimientoService.updateMovimiento(movimiento));
         }
     }
 
@@ -71,11 +70,13 @@ public class MovimientoController {
     @GetMapping("/movimientos/{id}")
     public ResponseEntity<Movimiento> findOneMovimiento(@ApiParam("Clave primaria del Movimiento")@PathVariable Long id) {
         log.debug("Rest request a Movimiento with id: "+ id);
-        Optional<Movimiento> movimientoOpt = Optional.ofNullable(movimientoService.findOneMovimiento(id));
+        Optional<Movimiento> movimientoOpt = movimientoService.findOneMovimiento(id);
         if (movimientoOpt.isPresent())
             return ResponseEntity.ok().body(movimientoOpt.get());
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
