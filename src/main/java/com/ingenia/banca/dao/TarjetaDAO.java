@@ -3,6 +3,7 @@ package com.ingenia.banca.dao;
 import com.ingenia.banca.model.Tarjeta;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TarjetaDAO {
     public Tarjeta createTarjeta(Tarjeta tarjeta);
@@ -13,5 +14,5 @@ public interface TarjetaDAO {
 
     public List<Tarjeta> findTarjetas();
 
-    public Tarjeta findOneTarjeta(Long numeroTarjeta);
+    public Optional<Tarjeta> findOneTarjeta(Long numeroTarjeta);
 }

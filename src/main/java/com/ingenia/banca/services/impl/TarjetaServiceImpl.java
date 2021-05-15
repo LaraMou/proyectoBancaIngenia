@@ -6,6 +6,7 @@ import com.ingenia.banca.services.TarjetaService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TarjetaServiceImpl implements TarjetaService {
@@ -20,11 +21,15 @@ public class TarjetaServiceImpl implements TarjetaService {
     public Tarjeta updateTarjeta(Tarjeta tarjeta){return this.tarjetaDAO.updateTarjeta(tarjeta);}
 
     @Override
-    public void deleteTarjeta(Long numero_tarjeta){this.tarjetaDAO.deleteTarjeta(numero_tarjeta);};
-
-    @Override
-    public Tarjeta findOneTarjeta(Long numero_tarjeta){return this.tarjetaDAO.findOneTarjeta(numero_tarjeta);}
+    public void deleteTarjeta(Long numeroTarjeta){this.tarjetaDAO.deleteTarjeta(numeroTarjeta);};
 
     @Override
     public List<Tarjeta> findTarjetas(){return this.tarjetaDAO.findTarjetas();}
+
+    @Override
+    public Optional<Tarjeta> findOneTarjeta(Long numeroTarjeta) {
+
+            return this.tarjetaDAO.findOneTarjeta(numeroTarjeta);
+
+    }
 }

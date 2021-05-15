@@ -3,6 +3,7 @@ package com.ingenia.banca.services;
 import com.ingenia.banca.model.Tarjeta;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TarjetaService {
 
@@ -14,5 +15,5 @@ public interface TarjetaService {
 
     List<Tarjeta> findTarjetas();
 
-    Tarjeta findOneTarjeta(Long numeroTarjeta);
+    Optional<Tarjeta> findOneTarjeta(Long numeroTarjeta);
 }

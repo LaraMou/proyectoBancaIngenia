@@ -13,7 +13,6 @@ public class Tarjeta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="numero_tarjeta")
     @ApiModelProperty("Clave primaria tipo Long")
-    @JsonIgnore
     private Long numeroTarjeta;
 
     @Column(name="ccv"  , nullable = false)

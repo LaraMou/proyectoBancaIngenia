@@ -14,6 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -57,6 +58,14 @@ public class TarjetaDAOImpl implements TarjetaDAO {
     }
 
     @Override
-    public Tarjeta findOneTarjeta(Long numeroTarjeta) {return manager.find(Tarjeta.class,numeroTarjeta);}
+    public Optional<Tarjeta> findOneTarjeta(Long numeroTarjeta) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Tarjeta> criteria = builder.createQuery(Tarjeta.class);
+        Root<Tarjeta> root = criteria.from(Tarjeta.class);
+
+        criteria.select(root);
+        criteria.where(builder.equal(root.get("numeroTarjeta"), numeroTarjeta));
+        return Optional.of(manager.createQuery(criteria).getSingleResult());
+    }
 
 }

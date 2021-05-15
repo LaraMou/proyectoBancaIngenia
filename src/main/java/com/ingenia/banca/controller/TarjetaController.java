@@ -87,10 +87,10 @@ public class TarjetaController {
      * @param numeroTarjeta Long
      * @return ResponseEntity<Usuario>
      */
-    @GetMapping("/users/{numero_tarjeta}")
+    @GetMapping("/tarjetas/{numeroTarjeta}")
     public ResponseEntity<Tarjeta> findOneTarjeta(@ApiParam("Clave primaria de la tarjeta")@PathVariable Long numeroTarjeta) {
         log.debug("Rest request a Tarjeta with id: "+ numeroTarjeta);
-        Optional<Tarjeta> tarjetaOpt = Optional.ofNullable(tarjetaService.findOneTarjeta(numeroTarjeta));
+        Optional<Tarjeta> tarjetaOpt = tarjetaService.findOneTarjeta(numeroTarjeta);
         if (tarjetaOpt.isPresent())
             return ResponseEntity.ok().body(tarjetaOpt.get());
 
