@@ -23,8 +23,6 @@ public class JwtTokenUtil {
 
     public String generateJwtToken(Authentication authentication) {
 
-        // Utilizando custom implementation de UserDetails:
-        // UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 
         return Jwts.builder()

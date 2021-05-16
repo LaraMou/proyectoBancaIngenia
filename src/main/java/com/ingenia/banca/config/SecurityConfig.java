@@ -37,18 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtRequestFilter();
     }
 
-    // En caso de querer forzar HTTPS:
-
-    /*
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.requiresChannel()
-                .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
-                .requiresSecure();
-    }
-     */
-
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -67,11 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Cross-Site Request Forgery CSRF
-        // CORS (Cross-origin resource sharing)
+
         http.csrf().disable()
 
-                .authorizeRequests().antMatchers("/API/").permitAll().and()
+                .authorizeRequests().antMatchers("/api/").permitAll().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().cors();
 
