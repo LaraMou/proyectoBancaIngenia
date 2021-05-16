@@ -1,7 +1,6 @@
 package com.ingenia.banca.controller;
 
 import com.ingenia.banca.model.Tarjeta;
-import com.ingenia.banca.model.Usuario;
 import com.ingenia.banca.services.TarjetaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -96,4 +95,13 @@ public class TarjetaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/tarjetas/cuenta/")
+    public ResponseEntity<List<Tarjeta>> findTarjetasByCuenta(@ApiParam("Clave primaria de la tarjeta")@RequestParam Long numeroCuenta) {
+        log.debug("Rest request to find all cards in Cuenta: "+ numeroCuenta);
+        List<Tarjeta> listTarjetas = tarjetaService.findTarjetasByCuenta(numeroCuenta);
+        if (listTarjetas != null)
+            return ResponseEntity.ok().body(listTarjetas);
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

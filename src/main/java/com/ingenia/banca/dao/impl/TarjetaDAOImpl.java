@@ -1,10 +1,16 @@
 package com.ingenia.banca.dao.impl;
 
 import com.ingenia.banca.dao.TarjetaDAO;
+import com.ingenia.banca.model.Cuenta;
 import com.ingenia.banca.model.Tarjeta;
 import com.ingenia.banca.repository.TarjetaRepository;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -63,6 +69,19 @@ public class TarjetaDAOImpl implements TarjetaDAO {
         criteria.select(root);
         criteria.where(builder.equal(root.get("numeroTarjeta"), numeroTarjeta));
         return Optional.of(manager.createQuery(criteria).getSingleResult());
+    }
+
+
+    @Override
+    public List<Tarjeta> findTarjetasByCuenta(Long numeroCuenta) {
+        Cuenta cuentabd = manager.find(Cuenta.class,numeroCuenta);
+        if (cuentabd != null) {
+            return cuentabd.getListaTarjetas();
+        }
+        else{
+            return null;
+        }
+
     }
 
 }

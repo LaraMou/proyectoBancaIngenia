@@ -32,20 +32,6 @@ public class MovimientoDAOImpl implements MovimientoDAO {
 
     @Override
     public Movimiento createMovimiento(Movimiento movimiento){
-        if(movimiento.getImporte()!=null){
-            System.out.println(movimiento);
-            Query query = manager.createQuery("SELECT  C.saldo_actual FROM Movimiento M JOIN Cuenta C ON M.cuenta.numerocuenta = C.numerocuenta WHERE C.numerocuenta = "+id+"'");
-            return query.getResultList();
-//
-//            CriteriaBuilder builder = manager.getCriteriaBuilder();
-//            CriteriaQuery<Cuenta> criteria = builder.createQuery(Cuenta.class);
-//            Root<Cuenta> root = criteria.from(Cuenta.class);
-//
-//            criteria.select(root.get("importeactual"));
-//            criteria.where(builder.equal(root.get("numerocuenta"),1L));
-//            System.out.println( criteria.select(root.get("importeactual")));
-        }
-
         return movimientoRepository.save(movimiento);
     }
 

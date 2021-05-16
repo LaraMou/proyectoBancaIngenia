@@ -18,4 +18,6 @@ public interface TarjetaService {
     List<Tarjeta> findTarjetas();
 
     Optional<Tarjeta> findOneTarjeta(Long numeroTarjeta);
+
+    List<Tarjeta> findTarjetasByCuenta(Long numeroCuenta);
 }

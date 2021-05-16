@@ -15,4 +15,6 @@ public interface TarjetaDAO {
     public List<Tarjeta> findTarjetas();
 
     public Optional<Tarjeta> findOneTarjeta(Long numeroTarjeta);
+
+    public List<Tarjeta> findTarjetasByCuenta(Long numeroCuenta);
 }

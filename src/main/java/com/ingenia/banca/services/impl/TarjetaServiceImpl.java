@@ -32,4 +32,9 @@ public class TarjetaServiceImpl implements TarjetaService {
             return this.tarjetaDAO.findOneTarjeta(numeroTarjeta);
 
     }
+
+    @Override
+    public List<Tarjeta> findTarjetasByCuenta(Long numeroCuenta){
+        return this.tarjetaDAO.findTarjetasByCuenta(numeroCuenta);
+    }
 }
