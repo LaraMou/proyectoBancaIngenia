@@ -395,13 +395,33 @@
 			"name": "Categoria",
 			"item": [
 				{
+					"name": "DELETE: Borrado categoria por id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/tarjetas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tarjetas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "PUT  Modificación Categorias",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\r\n ",
+							"raw": "{\r\n       \"id\":\"5\",\r\n        \"nombre\": \"ESCOLARES VARIOS\",\r\n        \"movimientos\":[]\r\n           \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,7 +429,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users",
+							"raw": "http://localhost:8080/api/categorias",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -417,7 +437,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"users"
+								"categorias"
 							]
 						}
 					},
@@ -441,7 +461,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users",
+							"raw": "http://localhost:8080/api/categorias",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -449,7 +469,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"users"
+								"categorias"
 							]
 						}
 					},
@@ -473,7 +493,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/user/1234567k",
+							"raw": "http://localhost:8080/api/categorias/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -481,9 +501,46 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"users",
-								"user",
-								"1234567k"
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET : Get One Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categorias?nombre=E",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "E"
+								}
 							]
 						}
 					},
@@ -827,135 +884,6 @@
 							"path": [
 								"api",
 								"accounts"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Categoria Copy",
-			"item": [
-				{
-					"name": "PUT  Modificación Categorias",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\":\"4\",\r\n\"nif\": \"23456789K\",\r\n        \"nombre\": \"Usuario2\",\r\n        \"primerapellido\": \"Apellido Usuario2\",\r\n        \"segundoapellido\": \"Apellido2 Usuario2\",\r\n        \"fechanacimiento\": \"1960-05-12\",\r\n        \"telefono\": 666778899,\r\n        \"email\": \"usuari21@test.com\",\r\n        \"ciudad\": \"Málaga\",\r\n        \"direccion\": \"C/ Ronda\",\r\n        \"codigopostal\": 29888,\r\n        \"pais\": \"España\",\r\n        \"interviniente\": \"TITULAR\",\r\n        \"ocupacion\": \"Sector Agrario\",\r\n        \"genero\": \"Femininio\",\r\n        \"cuentas\": [\r\n            \r\n    {\r\n    \"id\": 4,\r\n    \"nif\": \"23456789K\",\r\n    \"nombre\": \"Usuario2\",\r\n    \"primerapellido\": \"Apellido Usuario2\",\r\n    \"segundoapellido\": \"Apellido2 Usuario2\",\r\n    \"fechanacimiento\": \"1960-05-12\",\r\n    \"telefono\": 666778899,\r\n    \"email\": \"usuari21@test.com\",\r\n    \"ciudad\": \"Málaga\",\r\n    \"direccion\": \"C/ Ronda\",\r\n    \"codigopostal\": 29888,\r\n    \"pais\": \"España\",\r\n    \"interviniente\": \"TITULAR\",\r\n    \"ocupacion\": \"Sector Agrario\",\r\n    \"genero\": \"Femininio\",\r\n    \"cuentas\": []\r\n}\r\n          \r\n        ]\r\n}\r\n ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET : Recuperar todos las categorias con paginacion",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET : Get One",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/users/user/1234567k",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users",
-								"user",
-								"1234567k"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST : Crear Categoria",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"id\":\"\",\r\n        \"nombre\": \"RESTAURANTES\",\r\n        \"movimientos\":[\r\n            {\r\n               \"id\":\"1\"\r\n            }\r\n        ]\r\n}\r\n ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/categorias",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"categorias"
 							]
 						}
 					},
