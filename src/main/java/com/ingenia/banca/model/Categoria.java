@@ -21,8 +21,7 @@ public class Categoria {
 
     @ApiModelProperty("Listado cagetorias relacionadas movimiento")
     @OneToMany(mappedBy = "categoria")
-
-   private List<Movimiento> movimientos = new ArrayList<>();
+    private List<Movimiento> movimientos = new ArrayList<>();
 
     public Categoria() {
     }

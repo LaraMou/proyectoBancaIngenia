@@ -102,31 +102,30 @@ public class BancaApplication implements CommandLineRunner {
          * Asociar movimientos a categorias
          *
 //         */
-
-        Categoria restaurantes = new Categoria("RESTAURANTES");
-        categoriaRepository.save(restaurantes);
-//        Categoria categoria2 = new Categoria("GASTOS ESCOLARES");
-//        Categoria categoria3 = new Categoria("GASOLINERAS");
-//        Categoria categoria4 = new Categoria("RECIBOS");
-
 //
-        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurante Salomon","Restaurante tarje***");
-        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurant Marujita Salita","Pago tarje***");
-        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Maria La portuguesa","REst. Pago tarje***");
-        movrestau1.setCategoria(restaurantes);
-        movrestau2.setCategoria(restaurantes);
-        movrestau3.setCategoria(restaurantes);
-        movimientoDAO.createMovimiento(movrestau1);
-        movimientoDAO.createMovimiento(movrestau2);
-        movimientoDAO.createMovimiento(movrestau3);
-
-//        List<Movimiento> movrestaurants = new ArrayList<>();
-//        movrestaurants.add(movrestau1);
-//        movrestaurants.add(movrestau2);
-//        movrestaurants.add(movrestau3);
+//        Categoria restaurantes = new Categoria("RESTAURANTES");
+//        categoriaRepository.save(restaurantes);
+////        Categoria categoria2 = new Categoria("GASTOS ESCOLARES");
+////        Categoria categoria3 = new Categoria("GASOLINERAS");
+////        Categoria categoria4 = new Categoria("RECIBOS");
 //
-//        restaurantes.setMovimientos(movrestaurants);
-            //categoriaRepository.save(restaurantes);
+////
+//        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurante Salomon","Restaurante tarje***");
+//        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurant Marujita Salita","Pago tarje***");
+//        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Maria La portuguesa","REst. Pago tarje***");
+//        movrestau1.setCategoria(restaurantes);
+//        movrestau2.setCategoria(restaurantes);
+//        movrestau3.setCategoria(restaurantes);
+//        movimientoDAO.createMovimiento(movrestau1);
+//        movimientoDAO.createMovimiento(movrestau2);
+//        movimientoDAO.createMovimiento(movrestau3);
+//
+////        List<Movimiento> movrestaurants = new ArrayList<>();
+////        movrestaurants.add(movrestau1);
+////        movrestaurants.add(movrestau2);
+////        movrestaurants.add(movrestau3);
+////
+////        restaurantes.setMovimientos(movrestaurants);
+//            //categoriaRepository.save(restaurantes);
 
-    }
-}
+    }}
