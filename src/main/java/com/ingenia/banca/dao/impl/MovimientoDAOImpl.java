@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -82,19 +83,7 @@ public class MovimientoDAOImpl implements MovimientoDAO {
 
     }
 
-    @Override
-    public List<Movimiento> findAllMovimientoByNumerocuenta(Long numerocuenta) {
-        CriteriaBuilder builder = manager.getCriteriaBuilder();
-        CriteriaQuery<Movimiento> criteria = builder.createQuery(Movimiento.class);
-        Root<Movimiento> root =     criteria.from(Movimiento.class);
 
-        criteria.select(root);
-        criteria.where(builder.equal(root.get("numerocuenta"), numerocuenta));
-        Query query =  manager.createQuery(criteria);
-        List<Movimiento> movimientos = query.getResultList();
-        System.out.println("mllll"+movimientos);
-        return movimientos;
-    }
 //    //TODO MULTIWHERE
 //    @Override
 //    public List<Movimiento> findAllBetween(LocalDateTime fechainicio, LocalDateTime fechafin) {
@@ -110,6 +99,14 @@ public class MovimientoDAOImpl implements MovimientoDAO {
 ////
 ////        criteria.where(builder.between()root.get("fechaValor"),fechainicio,fechafin);
 ////    }
+//AND M.fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin+"'"
+    @Override
+    public List<Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin) {
+
+        Query query = manager.createQuery("SELECT M FROM Movimiento M JOIN Cuenta C ON M.cuenta.numerocuenta = C.numerocuenta WHERE C.numerocuenta = "+id+" AND M.fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin+"'");
+        return query.getResultList();
+
+    }
 
 
 }

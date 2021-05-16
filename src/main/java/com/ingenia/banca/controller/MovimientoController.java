@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,15 +82,14 @@ public class MovimientoController {
 
     }
 
-
-    @GetMapping("/movimientos/numerocuenta/{numerocuenta}")
-    public List<Movimiento> findMovimientoByCuenta(@ApiParam("Clave primaria del Movimiento")@PathVariable Long numerocuenta) {
-        log.debug("Rest request a Movimiento with id: "+ numerocuenta);
-        System.out.println("entrada por aqui");
-            return movimientoService.findAllMovimientoByNumerocuenta(numerocuenta);
-        }
-
-
+    @GetMapping("/movimientos/intervalo/{id}")
+    @ApiOperation("Encuentra todos los movimientos sin paginación")
+    public List<Movimiento> findMovimientosEntre(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long id,@RequestParam String fechaInicio,@RequestParam String fechaFin){
+        log.debug("Rest request all Movimientos");
+        LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return movimientoService.findMovimientosEntre(id,localdate1,localdate2);
+    }
 
 
 }

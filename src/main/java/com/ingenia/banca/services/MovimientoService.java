@@ -2,6 +2,8 @@ package com.ingenia.banca.services;
 
 import com.ingenia.banca.model.Movimiento;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,5 +19,7 @@ public interface  MovimientoService {
 
     Optional<Movimiento> findOneMovimiento(Long id);
 
-    List<Movimiento> findAllMovimientoByNumerocuenta(Long numerocuenta);
+    List <Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin);
+
+
 }

@@ -6,6 +6,8 @@ import com.ingenia.banca.model.Movimiento;
 import com.ingenia.banca.services.MovimientoService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,11 +29,10 @@ public class MovimientoServiceImpl implements MovimientoService {
     @Override
     public Optional<Movimiento> findOneMovimiento(Long id){return this.movimientoDAO.findOneMovimiento(id);}
 
-    @Override
-    public List<Movimiento> findAllMovimientoByNumerocuenta(Long numerocuenta) {
-        return this.movimientoDAO.findAllMovimientoByNumerocuenta(numerocuenta);
-    }
 
     @Override
     public List<Movimiento> findMovimientos(){return this.movimientoDAO.findMovimientos();}
+
+    @Override
+    public List<Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin){return this.movimientoDAO.findMovimientosEntre(id,fechaInicio,fechaFin);}
 }

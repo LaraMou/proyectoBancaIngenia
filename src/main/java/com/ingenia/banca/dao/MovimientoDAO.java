@@ -3,6 +3,7 @@ package com.ingenia.banca.dao;
 import com.ingenia.banca.model.Movimiento;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,6 @@ public interface MovimientoDAO {
     public Optional<Movimiento> findOneMovimiento(Long id);
 
 //    List<Movimiento> findAllBetween(LocalDateTime fechainicio, LocalDateTime fechafin);
-    List<Movimiento> findAllMovimientoByNumerocuenta(Long numerocuenta);
 
+    public List<Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin);
 }
