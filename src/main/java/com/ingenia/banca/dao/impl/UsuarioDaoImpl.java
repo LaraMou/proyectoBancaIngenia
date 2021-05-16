@@ -45,14 +45,20 @@ public class UsuarioDaoImpl implements UsuarioDao {
         return null;
     }
 
-    @Override
-    public Optional<Usuario> findUsuarioByInterviniente(String interviniente) {
-        return Optional.empty();
-    }
+
 
     @Override
     public List<Usuario> findAllByInterviniente(String interviniente, Integer paginacion, Integer limite) {
-        return null;
+        CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+        CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
+        Root<Usuario> root = criteriaQuery.from(Usuario.class);
+        criteriaQuery.select(root);
+        criteriaQuery.where(criteriaBuilder.like(root.get("interviniente"),interviniente + '%'));
+        Query query = manager.createQuery(criteriaQuery);
+        query.setMaxResults(limite);
+        query.setFirstResult(paginacion);
+        manager.close();
+        return query.getResultList();
     }
 
 

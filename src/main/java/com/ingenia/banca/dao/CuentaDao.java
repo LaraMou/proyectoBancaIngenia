@@ -12,9 +12,6 @@ public interface CuentaDao {
     Optional<Cuenta> findCuentaByNumerocuenta(Long numerocuenta);
 
     List<Cuenta> findAll(Integer paginacion, Integer limite);
-    Optional<Cuenta> calcularSaldo(Double saldo);
-
- //   List<Movimiento> findAllByMovimientos(Long numerocuenta, Integer paginacion, Integer limite);
 
 
 }

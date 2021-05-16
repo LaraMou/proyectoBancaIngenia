@@ -2,6 +2,9 @@ package com.ingenia.banca.dao.impl;
 
 import com.ingenia.banca.dao.CuentaDao;
 import com.ingenia.banca.model.Cuenta;
+import com.ingenia.banca.model.Cuenta;
+import com.ingenia.banca.model.Movimiento;
+import com.ingenia.banca.model.Usuario;
 import com.sun.xml.bind.v2.TODO;
 import org.springframework.stereotype.Repository;
 
@@ -37,15 +40,16 @@ public class CuentaDaoImpl implements CuentaDao {
 
     @Override
     public List<Cuenta> findAll(Integer paginacion, Integer limite) {
-        return null;
+        CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+        CriteriaQuery<Cuenta> criteriaQuery = criteriaBuilder.createQuery(Cuenta.class);
+        Root<Cuenta> root = criteriaQuery.from(Cuenta.class);
+        criteriaQuery.select(root);
+        Query query = manager.createQuery(criteriaQuery);
+        query.setMaxResults(limite);
+        query.setFirstResult(paginacion);
+        manager.close();
+        return query.getResultList();
     }
-
-    @Override
-    public Optional<Cuenta> calcularSaldo(Double saldo) {
-        return Optional.empty();
-    }
-    // todo
-
 
 
 
