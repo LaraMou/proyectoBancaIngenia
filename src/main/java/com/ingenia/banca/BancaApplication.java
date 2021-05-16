@@ -2,19 +2,20 @@ package com.ingenia.banca;
 
 import com.ingenia.banca.dao.CuentaDao;
 import com.ingenia.banca.dao.MovimientoDAO;
-import com.ingenia.banca.dao.UsuarioDao;
+
 import com.ingenia.banca.model.*;
+import com.ingenia.banca.repository.CategoriaRepository;
 import com.ingenia.banca.repository.CuentaRepository;
 import com.ingenia.banca.repository.MovimientoRepository;
 import com.ingenia.banca.repository.UsuarioRepository;
-import com.ingenia.banca.services.CategoriaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class BancaApplication implements CommandLineRunner {
     @Autowired
     MovimientoDAO movimientoDAO;
     @Autowired
-    CategoriaService categoriaService;
+    CategoriaRepository categoriaRepository;
 
 
     public static void main(String[] args) {
@@ -101,23 +102,31 @@ public class BancaApplication implements CommandLineRunner {
          * Asociar movimientos a categorias
          *
 //         */
-//
-//        Categoria restaurantes = new Categoria("RESTAURANTES");
+
+        Categoria restaurantes = new Categoria("RESTAURANTES");
+        categoriaRepository.save(restaurantes);
 //        Categoria categoria2 = new Categoria("GASTOS ESCOLARES");
 //        Categoria categoria3 = new Categoria("GASOLINERAS");
 //        Categoria categoria4 = new Categoria("RECIBOS");
+
 //
-//        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurante Salomon","Restaurante tarje***");
-//        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurant Marujita Salita","Pago tarje***");
-//        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Maria La portuguesa","REst. Pago tarje***");
-//
+        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurante Salomon","Restaurante tarje***");
+        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurant Marujita Salita","Pago tarje***");
+        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Maria La portuguesa","REst. Pago tarje***");
+        movrestau1.setCategoria(restaurantes);
+        movrestau2.setCategoria(restaurantes);
+        movrestau3.setCategoria(restaurantes);
+        movimientoDAO.createMovimiento(movrestau1);
+        movimientoDAO.createMovimiento(movrestau2);
+        movimientoDAO.createMovimiento(movrestau3);
+
 //        List<Movimiento> movrestaurants = new ArrayList<>();
 //        movrestaurants.add(movrestau1);
 //        movrestaurants.add(movrestau2);
 //        movrestaurants.add(movrestau3);
 //
 //        restaurantes.setMovimientos(movrestaurants);
-//        categoriaService.saveCategoria(restaurantes);
+            //categoriaRepository.save(restaurantes);
 
     }
 }

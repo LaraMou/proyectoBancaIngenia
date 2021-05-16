@@ -14,15 +14,15 @@ public class Categoria {
     @ApiModelProperty("Clave primaria tipo Long")
     private Long id;
 
-    @Column(name = "nombre" , nullable = false)
+    @Column(name = "nombre" , nullable = false, unique = true)
     @ApiModelProperty("Formato texto no nulo")
     private String nombre;
 
 
     @ApiModelProperty("Listado cagetorias relacionadas movimiento")
-    @OneToMany()
-    @JoinColumn(name = "movimiento_id")
-    private List<Movimiento> movimientos = new ArrayList<>();
+    @OneToMany(mappedBy = "categoria")
+
+   private List<Movimiento> movimientos = new ArrayList<>();
 
     public Categoria() {
     }

@@ -1,14 +1,11 @@
 package com.ingenia.banca.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Entity
 public class Movimiento {
@@ -43,8 +40,8 @@ public class Movimiento {
     @ManyToOne
     @ApiModelProperty("Entidad relacionada many to one categorias")
     @JoinColumn(name = "id_categoria")
-
-    private Categoria categoria;
+    @JsonIgnore
+     private Categoria categoria;
 
     @ManyToOne()
     @JsonIgnore
