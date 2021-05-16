@@ -72,14 +72,24 @@ public class BancaApplication implements CommandLineRunner {
         Movimiento  movimiento1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
         Movimiento  movimiento2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
         Movimiento  movimiento3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
+        Cuenta cuenta = new Cuenta(LocalDate.now(),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
+//       movimiento2.setCuenta(cuenta);
+//        movimiento1.setCuenta(cuenta);
+//        movimiento3.setCuenta(cuenta);
+        movimientoDAO.createMovimiento(movimiento1);
+        movimientoDAO.createMovimiento(movimiento2);
+        movimientoDAO.createMovimiento(movimiento3);
 
-        List<Movimiento> movimientos = new ArrayList<>();
-        movimientos.add(movimiento1);
-        movimientos.add(movimiento2);
-        movimientos.add(movimiento3);
-         Cuenta cuenta1 = new Cuenta(LocalDate.of(2000,02,02),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
-         cuenta1.setListaMovimientos(movimientos);
-        cuentaRepository.save(cuenta1);
+
+
+
+        //        List<Movimiento> movimientos = new ArrayList<>();
+//        movimientos.add(movimiento1);
+//        movimientos.add(movimiento2);
+//        movimientos.add(movimiento3);
+//         Cuenta cuenta1 = new Cuenta(LocalDate.of(2000,02,02),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
+//         cuenta1.setListaMovimientos(movimientos);
+//        cuentaRepository.save(cuenta1);
 
         /**
          * Asocio Usuario anterior a la cuenta

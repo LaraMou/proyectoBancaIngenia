@@ -28,5 +28,10 @@ public class MovimientoServiceImpl implements MovimientoService {
     public Optional<Movimiento> findOneMovimiento(Long id){return this.movimientoDAO.findOneMovimiento(id);}
 
     @Override
+    public List<Movimiento> findAllMovimientoByNumerocuenta(Long numerocuenta) {
+        return this.movimientoDAO.findAllMovimientoByNumerocuenta(numerocuenta);
+    }
+
+    @Override
     public List<Movimiento> findMovimientos(){return this.movimientoDAO.findMovimientos();}
 }

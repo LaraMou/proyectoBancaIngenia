@@ -19,5 +19,6 @@ public interface MovimientoDAO {
     public Optional<Movimiento> findOneMovimiento(Long id);
 
 //    List<Movimiento> findAllBetween(LocalDateTime fechainicio, LocalDateTime fechafin);
+    List<Movimiento> findAllMovimientoByNumerocuenta(Long numerocuenta);
 
 }

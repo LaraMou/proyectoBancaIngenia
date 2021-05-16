@@ -80,6 +80,13 @@ public class MovimientoController {
     }
 
 
+    @GetMapping("/movimientos/numerocuenta/{numerocuenta}")
+    public List<Movimiento> findMovimientoByCuenta(@ApiParam("Clave primaria del Movimiento")@PathVariable Long numerocuenta) {
+        log.debug("Rest request a Movimiento with id: "+ numerocuenta);
+        System.out.println("entrada por aqui");
+            return movimientoService.findAllMovimientoByNumerocuenta(numerocuenta);
+        }
+
 
 
 

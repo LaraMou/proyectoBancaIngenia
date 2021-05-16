@@ -16,4 +16,6 @@ public interface  MovimientoService {
     List<Movimiento> findMovimientos();
 
     Optional<Movimiento> findOneMovimiento(Long id);
+
+    List<Movimiento> findAllMovimientoByNumerocuenta(Long numerocuenta);
 }

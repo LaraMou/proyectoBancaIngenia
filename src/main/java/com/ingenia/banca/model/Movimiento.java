@@ -43,8 +43,7 @@ public class Movimiento {
     @JsonIgnore
      private Categoria categoria;
 
-    @ManyToOne()
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "numerocuenta")
     @ApiModelProperty("Cuenta relativa al movimiento")
     private Cuenta cuenta;
