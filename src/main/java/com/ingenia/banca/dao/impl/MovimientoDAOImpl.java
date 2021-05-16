@@ -32,16 +32,18 @@ public class MovimientoDAOImpl implements MovimientoDAO {
 
     @Override
     public Movimiento createMovimiento(Movimiento movimiento){
-        if(movimiento.getImporte()>0){
+        if(movimiento.getImporte()!=null){
             System.out.println(movimiento);
-//            System.out.println("numero"+ numerocuenta);
-            //Query query =  manager.createQuery("select distinct c from Cuenta c join fetch c.listaMovimientos where c.numerocuenta = 1", Cuenta.class);
+            Query query = manager.createQuery("SELECT  C.saldo_actual FROM Movimiento M JOIN Cuenta C ON M.cuenta.numerocuenta = C.numerocuenta WHERE C.numerocuenta = "+id+"'");
+            return query.getResultList();
+//
 //            CriteriaBuilder builder = manager.getCriteriaBuilder();
 //            CriteriaQuery<Cuenta> criteria = builder.createQuery(Cuenta.class);
 //            Root<Cuenta> root = criteria.from(Cuenta.class);
 //
-//            criteria.select(root);
-//            criteria.where(builder.equal(root.get("numerocuenta"),numerocuenta));
+//            criteria.select(root.get("importeactual"));
+//            criteria.where(builder.equal(root.get("numerocuenta"),1L));
+//            System.out.println( criteria.select(root.get("importeactual")));
         }
 
         return movimientoRepository.save(movimiento);
@@ -83,23 +85,6 @@ public class MovimientoDAOImpl implements MovimientoDAO {
 
     }
 
-
-//    //TODO MULTIWHERE
-//    @Override
-//    public List<Movimiento> findAllBetween(LocalDateTime fechainicio, LocalDateTime fechafin) {
-////        CriteriaBuilder builder = manager.getCriteriaBuilder();
-////        CriteriaQuery<Movimiento> criteria = builder.createQuery(Movimiento.class);
-////        Root<Movimiento> root = criteria.from(Movimiento.class);
-////        criteria.select(root);
-////
-////        Predicate dategreater = builder.gt(root("fechaValor"),fechainicio) // greater than
-////        Predicate ageless30 = builder.lt(root.get("age"), 30); // less than
-////
-////        criteria.where(builder.and(agegreater20, ageless30));
-////
-////        criteria.where(builder.between()root.get("fechaValor"),fechainicio,fechafin);
-////    }
-//AND M.fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin+"'"
     @Override
     public List<Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin) {
 
