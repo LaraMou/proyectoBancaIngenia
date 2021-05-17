@@ -37,7 +37,7 @@ public class Movimiento {
     /**
      * Relación Categorias y movimientos n-1
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @ApiModelProperty("Entidad relacionada many to one categorias")
     @JoinColumn(name = "id_categoria")
     @JsonIgnore

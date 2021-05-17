@@ -5,7 +5,9 @@ import com.ingenia.banca.model.Cuenta;
 import com.ingenia.banca.model.Cuenta;
 import com.ingenia.banca.model.Movimiento;
 import com.ingenia.banca.model.Usuario;
-import com.sun.xml.bind.v2.TODO;
+import com.ingenia.banca.repository.CuentaRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,8 +21,12 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public class CuentaDaoImpl implements CuentaDao {
+    @Autowired
+    CuentaRepository cuentaRepository;
     @PersistenceContext
     private EntityManager manager;
+
+        
 
 
     @Override
@@ -63,6 +69,14 @@ public class CuentaDaoImpl implements CuentaDao {
             return new ArrayList<>();
         }
     }
+
+//    @Override
+//    public Double calcularSaldo(Long numerocuenta) {
+//        Query nativeQuery = manager.createNativeQuery("SELECT SUM(importe) FROM Movimiento M JOIN Cuenta C ON M.cuenta.numerocuenta = C.numerocuenta WHERE C.numerocuenta = " + numerocuenta + "");
+//        Object result = nativeQuery.getSingleResult();
+//
+//
+//    }
 
 
 }

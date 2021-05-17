@@ -12,6 +12,6 @@ public interface CuentaDao {
     Optional<Cuenta> findCuentaByNumerocuenta(Long numerocuenta);
 
     List<Cuenta> findAll(Integer paginacion, Integer limite);
-
+//    Optional<Cuenta> calcularSaldo(Long numerocuenta);
     List<Cuenta> findAccountsByUsuario(Long idUsuario);
 }

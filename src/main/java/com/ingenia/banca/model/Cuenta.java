@@ -56,7 +56,7 @@ public class Cuenta {
     private Double importeactual;
 
 
-    @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy= "cuenta", cascade = CascadeType.ALL)
     @ApiModelProperty("Tarjetas en cada cuenta")
     private List<Tarjeta> listaTarjetas;
 
