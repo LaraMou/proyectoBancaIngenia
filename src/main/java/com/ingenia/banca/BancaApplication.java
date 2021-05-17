@@ -48,23 +48,6 @@ public class BancaApplication implements CommandLineRunner {
                 666556655L,"m@mailto.com", Interviniente.TITULAR);
 
 
-//        Optional<Usuario> usuariodb = usuarioDao.findUsuarioByNif("12345678b");
-//        if(usuariodb.isPresent())
-//            System.out.println(usuariodb.get().getNif());
-//
-//        /**
-//         * Creación cuenta y asociación
-//         */
-//        List<Cuenta> cuentas = new ArrayList<>();
-//        cuentas.add( new Cuenta(1234123401123456789l,LocalDate.of(2000,02,02),
-//                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
-//                1000D,2000D));
-//        cuentas.add( new Cuenta(234123401123456789l,LocalDate.of(2000,02,02),
-//                LocalDate.now(),LocalDate.of(2021,05,15),Estado.ACTIVO,
-//                1000D,2000D));
-//
-//        usuario.setCuentas(cuentas);
-
         /**
          * Creación cuentas Y MOVMIENTO
          */
@@ -72,23 +55,11 @@ public class BancaApplication implements CommandLineRunner {
         Movimiento  movimiento2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
         Movimiento  movimiento3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
         Cuenta cuenta = new Cuenta(LocalDate.now(),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
-//       movimiento2.setCuenta(cuenta);
-//        movimiento1.setCuenta(cuenta);
-//        movimiento3.setCuenta(cuenta);
         movimientoDAO.createMovimiento(movimiento1);
         movimientoDAO.createMovimiento(movimiento2);
         movimientoDAO.createMovimiento(movimiento3);
 
 
-
-
-        //        List<Movimiento> movimientos = new ArrayList<>();
-//        movimientos.add(movimiento1);
-//        movimientos.add(movimiento2);
-//        movimientos.add(movimiento3);
-//         Cuenta cuenta1 = new Cuenta(LocalDate.of(2000,02,02),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
-//         cuenta1.setListaMovimientos(movimientos);
-//        cuentaRepository.save(cuenta1);
 
         /**
          * Asocio Usuario anterior a la cuenta
@@ -112,16 +83,12 @@ public class BancaApplication implements CommandLineRunner {
         /**
          * Asociar movimientos a categorias
          *
-//         */
+        */
 
         Categoria restaurantes = new Categoria("RESTAURANTES");
         categoriaRepository.save(restaurantes);
         cuentaRepository.save(cuenta2);
-        //        Categoria categoria2 = new Categoria("GASTOS ESCOLARES");
-//        Categoria categoria3 = new Categoria("GASOLINERAS");
-//        Categoria categoria4 = new Categoria("RECIBOS");
 
-//
         Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurante Salomon","Restaurante tarje***");
         Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurant Marujita Salita","Pago tarje***");
         Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Maria La portuguesa","REst. Pago tarje***");
