@@ -6,6 +6,12 @@ values (11,01,1234,0,NOW(),'2018-01-01',NOW(),1000,2000);
 insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
 values ('Ingreso','ingreso',NOW(),NOW(),50,null,1);
 
+Hibernate: insert into movimiento (id_categoria, concepto, numerocuenta, descripcion, fecha, fecha_valor, importe)
+Hibernate: insert into movimiento (id_categoria, concepto, numerocuenta, descripcion, fecha, fecha_valor, importe)
+Hibernate: insert into movimiento (id_categoria, concepto, numerocuenta, descripcion, fecha, fecha_valor, importe)
+Hibernate: insert into movimiento (id_categoria, concepto, numerocuenta, descripcion, fecha, fecha_valor, importe)
+
+
 insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
 values ('Pago','Pago Gasolinera',NOW(),NOW(),50,null,1);
 
