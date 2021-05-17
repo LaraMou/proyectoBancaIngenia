@@ -13,5 +13,5 @@ public interface CuentaDao {
 
     List<Cuenta> findAll(Integer paginacion, Integer limite);
 
-
+    List<Cuenta> findAccountsByUsuario(Long idUsuario);
 }

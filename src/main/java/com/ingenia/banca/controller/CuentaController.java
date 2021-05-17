@@ -2,6 +2,7 @@ package com.ingenia.banca.controller;
 
 import com.ingenia.banca.model.Cuenta;
 
+import com.ingenia.banca.model.Usuario;
 import com.ingenia.banca.services.CuentaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -89,4 +90,18 @@ public class CuentaController {
     @DeleteMapping("/accounts/{id}")
     @ApiOperation("Borrado de categoria por id")
     public void deleteCategoria(@PathVariable Long id) {cuentaService.deleteById(id);}
+
+
+    @GetMapping("/accounts/user/{idUsuario}")
+    @ApiOperation("Encuentra todas las cuentas de un usuario")
+    public ResponseEntity<List<Cuenta>> findAccountsByUsuario(@PathVariable Long idUsuario){
+        log.debug("Rest request All cuentas with user id: "+ idUsuario );
+        List<Cuenta> cuentasList = cuentaService.findAccountsByUsuario(idUsuario);
+        if(cuentasList!= null){
+            return ResponseEntity.ok().body(cuentasList);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

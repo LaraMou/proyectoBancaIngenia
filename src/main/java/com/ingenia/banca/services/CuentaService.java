@@ -1,6 +1,7 @@
 package com.ingenia.banca.services;
 
 import com.ingenia.banca.model.Cuenta;
+import com.ingenia.banca.model.Usuario;
 
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface CuentaService {
     Cuenta saveCuenta(Cuenta cuenta);
 
    void deleteById(Long id);
+
+   List<Cuenta> findAccountsByUsuario(Long idUsuario);
 }

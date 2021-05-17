@@ -2,6 +2,7 @@ package com.ingenia.banca.services.impl;
 
 import com.ingenia.banca.dao.CuentaDao;
 import com.ingenia.banca.model.Cuenta;
+import com.ingenia.banca.model.Usuario;
 import com.ingenia.banca.repository.CuentaRepository;
 import com.ingenia.banca.services.CuentaService;
 import io.swagger.annotations.ApiOperation;
@@ -50,5 +51,10 @@ public class CuentaServiceImpl implements CuentaService {
     @Override
     public void deleteById(Long id) {
         cuentaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Cuenta> findAccountsByUsuario(Long idUsuario){
+        return cuentaDao.findAccountsByUsuario(idUsuario);
     }
 }

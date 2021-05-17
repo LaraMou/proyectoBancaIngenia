@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Repository
@@ -51,7 +52,17 @@ public class CuentaDaoImpl implements CuentaDao {
         return query.getResultList();
     }
 
+    @Override
+    public List<Cuenta> findAccountsByUsuario(Long idUsuario) {
+        Usuario usuarioDb = manager.find(Usuario.class,idUsuario);
 
+        if(usuarioDb != null){
+            return usuarioDb.getCuentas();
+        }
+        else{
+            return new ArrayList<>();
+        }
+    }
 
 
 }
