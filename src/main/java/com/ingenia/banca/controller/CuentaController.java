@@ -8,14 +8,20 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api")
 public class CuentaController {
@@ -52,15 +58,42 @@ public class CuentaController {
      */
     @PutMapping(value = "/accounts")
     @ApiOperation("Modificación  de cuentas")
-    public ResponseEntity<Cuenta> modifyUser(@RequestBody Cuenta cuenta) {
+    public ResponseEntity<?> modifyUser(@RequestBody Cuenta cuenta , BindingResult result) {
         log.debug("Modify Cuenta");
-        if (cuenta.getNumerocuenta()==null) {
-            log.error("Error en Modify Cuenta");
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        Map<String, Object> response = new HashMap<>();
+        if (result.hasErrors()) {
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "El campo '" + err.getField() + "' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors", errors);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
         }
-        Cuenta resultado = cuentaService.saveCuenta(cuenta);
-        return ResponseEntity.ok().body(resultado);
+
+        if (cuenta.getNumerocuenta() == null) {
+            log.error("Error en Modify Cuenta");
+            response.put("mensaje", "Error: no se pudo editar, la cuenta numero: "
+                    .concat(cuenta.getNumerocuenta().toString().concat(" no existe en la base de datos!")));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+        try {
+            Cuenta resultado = cuentaService.saveCuenta(cuenta);
+
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al actualizar la cuenta en la base de datos");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("mensaje", "La cuenta se ha atualizado con éxito!");
+        response.put("cuenta", cuenta);
+
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
+
+
 
     /**
      * metodo que devuelve una lista con todos los usuarios de la BD
@@ -88,9 +121,23 @@ public class CuentaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @DeleteMapping("/accounts/{id}")
-    @ApiOperation("Borrado de categoria por id")
-    public void deleteCategoria(@PathVariable Long id) {cuentaService.deleteById(id);}
+    @ApiOperation("Borrado de cuenta por id")
+    public ResponseEntity<?> deleteCuenta(@PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
 
+        try {
+
+            cuentaService.deleteById(id);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al eliminar la cuenta de la base de datos");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("mensaje", "El cliente eliminado con éxito!");
+
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
 
     @GetMapping("/accounts/user/{idUsuario}")
     @ApiOperation("Encuentra todas las cuentas de un usuario")

@@ -72,11 +72,13 @@ public class CuentaDaoImpl implements CuentaDao {
 
 //    @Override
 //    public Double calcularSaldo(Long numerocuenta) {
-//        Query nativeQuery = manager.createNativeQuery("SELECT SUM(importe) FROM Movimiento M JOIN Cuenta C ON M.cuenta.numerocuenta = C.numerocuenta WHERE C.numerocuenta = " + numerocuenta + "");
-//        Object result = nativeQuery.getSingleResult();
 //
+//
+//        Query query = manager.createQuery("SELECT SUM(importe) FROM Movimiento  WHERE cuenta.numerocuenta = "+numerocuenta+"");
+//        return query.getSingleResult(Double);
 //
 //    }
+    //TODO POR LAS FECHAS WHERE , FECHAVALO..
 
 
 }
