@@ -51,9 +51,9 @@ public class BancaApplication implements CommandLineRunner {
         /**
          * Creación cuentas Y MOVMIENTO
          */
-        Movimiento  movimiento1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
-        Movimiento  movimiento2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
-        Movimiento  movimiento3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
+        Movimiento  movimiento1 = new Movimiento(-50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
+        Movimiento  movimiento2 = new Movimiento(-50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
+        Movimiento  movimiento3 = new Movimiento(-50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
         Cuenta cuenta = new Cuenta(LocalDate.now(),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
         movimientoDAO.createMovimiento(movimiento1);
         movimientoDAO.createMovimiento(movimiento2);

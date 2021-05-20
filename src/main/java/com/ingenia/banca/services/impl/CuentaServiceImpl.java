@@ -57,4 +57,9 @@ public class CuentaServiceImpl implements CuentaService {
     public List<Cuenta> findAccountsByUsuario(Long idUsuario){
         return cuentaDao.findAccountsByUsuario(idUsuario);
     }
+
+    @Override
+    public Double getSaldo(Long numerocuenta) {
+        return cuentaDao.getSaldo(numerocuenta);
+    }
 }

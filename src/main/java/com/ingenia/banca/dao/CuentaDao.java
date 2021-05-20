@@ -12,7 +12,9 @@ public interface CuentaDao {
     Optional<Cuenta> findCuentaByNumerocuenta(Long numerocuenta);
 
     List<Cuenta> findAll(Integer paginacion, Integer limite);
-    //Double Saldo calcularSaldo(Long numerocuenta); // TODO: 19/05/2021
-    List<Cuenta> findAccountsByUsuario(Long idUsuario); // TODO
+
+    List<Cuenta> findAccountsByUsuario(Long idUsuario);
+
+    Double getSaldo(Long numerocuenta);
 
 }

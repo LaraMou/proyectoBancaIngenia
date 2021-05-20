@@ -58,7 +58,7 @@ public class CuentaController {
      */
     @PutMapping(value = "/accounts")
     @ApiOperation("Modificación  de cuentas")
-    public ResponseEntity<?> modifyUser(@RequestBody Cuenta cuenta , BindingResult result) {
+    public ResponseEntity<?> updateAccount(@RequestBody Cuenta cuenta , BindingResult result) {
         log.debug("Modify Cuenta");
         Map<String, Object> response = new HashMap<>();
         if (result.hasErrors()) {
@@ -151,4 +151,15 @@ public class CuentaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/accounts/saldo/{numerocuenta}")
+    @ApiOperation("Encuentra todas las cuentas de un usuario")
+    public Double getSaldo(@PathVariable Long numerocuenta) {
+        log.debug("Rest request getSaldo " + numerocuenta);
+        if (numerocuenta != null)
+            cuentaService.getSaldo(numerocuenta);
+        System.out.println(">>>>>>>saldo" + cuentaService.getSaldo(numerocuenta));
+        return cuentaService.getSaldo(numerocuenta);
+    }
+
 }

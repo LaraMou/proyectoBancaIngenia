@@ -9,12 +9,14 @@ import com.ingenia.banca.repository.CuentaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +25,13 @@ import java.util.Optional;
 public class CuentaDaoImpl implements CuentaDao {
     @Autowired
     CuentaRepository cuentaRepository;
+
     @PersistenceContext
     private EntityManager manager;
 
-        
-
 
     @Override
-    public Optional<Cuenta> findCuentaByNumerocuenta(Long  numerocuenta) {
+    public Optional<Cuenta> findCuentaByNumerocuenta(Long numerocuenta) {
         if (numerocuenta != null) {
             CriteriaBuilder builder = manager.getCriteriaBuilder();
             CriteriaQuery<Cuenta> criteria = builder.createQuery(Cuenta.class);
@@ -60,25 +61,43 @@ public class CuentaDaoImpl implements CuentaDao {
 
     @Override
     public List<Cuenta> findAccountsByUsuario(Long idUsuario) {
-        Usuario usuarioDb = manager.find(Usuario.class,idUsuario);
+        Usuario usuarioDb = manager.find(Usuario.class, idUsuario);
 
-        if(usuarioDb != null){
+        if (usuarioDb != null) {
             return usuarioDb.getCuentas();
-        }
-        else{
+        } else {
             return new ArrayList<>();
         }
     }
 
+    @Override
+    public Double getSaldo(Long numerocuenta) {
+        Double saldoActual = cuentaRepository.getSaldo(numerocuenta);
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Double> criteria = builder.createQuery(Double.class);
+        Root<Cuenta> root = criteria.from(Cuenta.class);
+        criteria.select(root.get("importeinicial"));
+
+        criteria.where(builder.equal(root.get("numerocuenta"), numerocuenta));
+
+        Double saldo = manager.createQuery(criteria).getSingleResult();
+
+        Double calculadoSaldo = saldo + saldoActual;
+
+
+        return calculadoSaldo;
+    }
+//    @Transactional(readOnly =false)
 //    @Override
-//    public Double calcularSaldo(Long numerocuenta) {
-//
-//
-//        Query query = manager.createQuery("SELECT SUM(importe) FROM Movimiento  WHERE cuenta.numerocuenta = "+numerocuenta+"");
-//        return query.getSingleResult(Double);
-//
+//    private void updateSaldo(Long numerocuenta, Double calculadoSaldo) {
+//        CriteriaBuilder builder = manager.getCriteriaBuilder();
+//        CriteriaBuilder builderUpdate = manager.getCriteriaBuilder();
+//        CriteriaUpdate<Cuenta> criteriaUpdate = builder.createCriteriaUpdate(Cuenta.class);
+//        Root<Cuenta> rootdb = criteriaUpdate.from(Cuenta.class);
+//        criteriaUpdate.set(rootdb.get("importeactual"), calculadoSaldo);
+//        criteriaUpdate.where(builder.equal(rootdb.get("numerocuenta"), numerocuenta));
+//        manager.createQuery(criteriaUpdate).executeUpdate();
 //    }
-    //TODO POR LAS FECHAS WHERE , FECHAVALO..
 
 
 }

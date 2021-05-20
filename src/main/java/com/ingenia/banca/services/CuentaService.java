@@ -17,4 +17,5 @@ public interface CuentaService {
    void deleteById(Long id);
 
    List<Cuenta> findAccountsByUsuario(Long idUsuario);
+   Double getSaldo(Long numerocuenta);
 }
