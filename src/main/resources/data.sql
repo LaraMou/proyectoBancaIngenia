@@ -8,7 +8,8 @@ INSERT INTO categoria (id, nombre) VALUES (4, 'NOMINAS');
 
 insert into cuenta (codpais,digitocontrol,entidad,estado, fechaactual, fechaapertura,fechacontable, saldo_actual,saldo_inicial)
 values (11,01,1234,0,NOW(),'2018-01-01',NOW(),1000,2000);
-
+insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
+values ('Primer movimiento','ingreso','2018-01-18 10:09:44.000000','2018-01-01',1000,null,1);
 
 insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
 values ('Ingreso','ingreso',NOW(),'2021-05-12',1000,4,1);

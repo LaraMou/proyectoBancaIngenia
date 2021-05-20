@@ -10,11 +10,10 @@ import java.util.List;
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
 
-    @Query("SELECT SUM(importe) from Movimiento  where cuenta.numerocuenta=?1")
+
+    @Query("SELECT importeinicial from Cuenta  where numerocuenta=?1")
     Double getSaldo(Long numerocuenta);
 
-    @Query("SELECT SUM(importe) from Movimiento  where cuenta.numerocuenta=?1 AND fechaValor<=?2")
-    Double getSaldoFecha(Long numerocuenta, LocalDate fechaValor);
 
 
 }

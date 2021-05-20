@@ -43,9 +43,22 @@ public class CuentaController {
      */
     @PostMapping("/accounts")
     @ApiOperation("Create new cuenta")
-    public ResponseEntity<Cuenta> createUser(@RequestBody Cuenta cuenta) throws URISyntaxException {
+    public ResponseEntity<?> createUser(@RequestBody Cuenta cuenta,BindingResult result) throws URISyntaxException {
         log.debug("Create Cuenta");
+        Map<String, Object> response = new HashMap<>();
         Cuenta resultado;
+        if(result.hasErrors()) {
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "El campo '" + err.getField() +"' "+ err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors", errors);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+        }
+
+
         if (cuenta.getNumerocuenta()!=null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -166,14 +179,16 @@ public class CuentaController {
 
     @GetMapping("/accounts/instant/{numerocuenta}")
     @ApiOperation("Obtiene saldo a fecha entrada")
-    public Double getSaldoFecha(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta,@RequestParam String fechaInicio) {
+    public Double getSaldoFecha(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta,@RequestParam String fechaInicio,@RequestParam String fechaFin ) {
+
         log.debug("Rest request getSaldo " + numerocuenta);
-        System.out.println("<<<<<<<<<<<<<<fecha"+fechaInicio);
+        System.out.println(fechaFin+"*******"+fechaInicio);
         LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if (numerocuenta !=null)
-            cuentaService.getSaldoFecha(numerocuenta,localdate1);
-        System.out.println(">>>>>>>saldo" + cuentaService.getSaldoFecha(numerocuenta,localdate1));
-        return cuentaService.getSaldoFecha(numerocuenta,localdate1);
+            cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2);
+        System.out.println(">>>>>>>saldo" + cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2));
+        return cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2);
     }
 
 }

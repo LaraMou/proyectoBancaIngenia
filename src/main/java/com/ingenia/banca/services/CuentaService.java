@@ -19,5 +19,5 @@ public interface CuentaService {
 
    List<Cuenta> findAccountsByUsuario(Long idUsuario);
    Double getSaldo(Long numerocuenta);
-    Double getSaldoFecha(Long numerocuenta, LocalDate fechaentrada);
+    Double getSaldoFecha(Long numerocuenta, LocalDate fechaentrada,LocalDate fechafin);
 }

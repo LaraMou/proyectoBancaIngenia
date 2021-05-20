@@ -17,6 +17,6 @@ public interface CuentaDao {
     List<Cuenta> findAccountsByUsuario(Long idUsuario);
 
     Double getSaldo(Long numerocuenta);
-    Double getSaldoFecha(Long numerocuenta, LocalDate fecha);
+    Double getSaldoFecha(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin);
 
 }
