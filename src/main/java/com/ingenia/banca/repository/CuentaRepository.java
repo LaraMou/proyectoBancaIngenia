@@ -4,12 +4,17 @@ import com.ingenia.banca.model.Cuenta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
-    @Query("SELECT SUM(importe) from Movimiento  where cuenta.numerocuenta =?1")
+
+    @Query("SELECT SUM(importe) from Movimiento  where cuenta.numerocuenta=?1")
     Double getSaldo(Long numerocuenta);
+
+    @Query("SELECT SUM(importe) from Movimiento  where cuenta.numerocuenta=?1 AND fechaValor<=?2")
+    Double getSaldoFecha(Long numerocuenta, LocalDate fechaValor);
 
 
 }

@@ -51,9 +51,9 @@ public class BancaApplication implements CommandLineRunner {
         /**
          * Creación cuentas Y MOVMIENTO
          */
-        Movimiento  movimiento1 = new Movimiento(-50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
-        Movimiento  movimiento2 = new Movimiento(-50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
-        Movimiento  movimiento3 = new Movimiento(-50D, LocalDateTime.now(),LocalDateTime.now(),"Pago gaso","gasolinaera");
+        Movimiento  movimiento1 = new Movimiento(-50D, LocalDateTime.now(),LocalDate.now(),"Pago gaso","gasolinaera");
+        Movimiento  movimiento2 = new Movimiento(-50D, LocalDateTime.now(),LocalDate.now(),"Pago gaso","gasolinaera");
+        Movimiento  movimiento3 = new Movimiento(-50D, LocalDateTime.now(),LocalDate.now(),"Pago gaso","gasolinaera");
         Cuenta cuenta = new Cuenta(LocalDate.now(),LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);
         movimientoDAO.createMovimiento(movimiento1);
         movimientoDAO.createMovimiento(movimiento2);
@@ -89,9 +89,9 @@ public class BancaApplication implements CommandLineRunner {
         categoriaRepository.save(restaurantes);
         cuentaRepository.save(cuenta2);
 
-        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurante Salomon","Restaurante tarje***");
-        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Restaurant Marujita Salita","Pago tarje***");
-        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDateTime.now(),"Maria La portuguesa","REst. Pago tarje***");
+        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Restaurante Salomon","Restaurante tarje***");
+        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Restaurant Marujita Salita","Pago tarje***");
+        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Maria La portuguesa","REst. Pago tarje***");
         movrestau1.setCuenta(cuenta2);
          movrestau1.setCategoria(restaurantes);
         movrestau2.setCategoria(restaurantes);

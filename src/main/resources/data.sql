@@ -13,6 +13,10 @@ values (11,01,1234,0,NOW(),'2018-01-01',NOW(),1000,2000);
 insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
 values ('Ingreso','ingreso',NOW(),'2021-05-12',1000,4,1);
 insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
+values ('Pago Restuarent','pago rest',NOW(),'2021-05-12',-50,4,1);
+insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
+values ('Pago','pagos libreria',NOW(),'2021-05-12',-10,3,1);
+insert into movimiento(concepto,descripcion,fecha,fecha_valor,importe,id_categoria,numerocuenta)
 values ('Pago','Pago Restuarante',NOW(),'2021-05-13',50,1,1);
 
 

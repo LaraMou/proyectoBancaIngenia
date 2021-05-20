@@ -14,10 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +27,10 @@ public class CuentaDaoImpl implements CuentaDao {
     @PersistenceContext
     private EntityManager manager;
 
+    //variables de la clase
+    private Double saldoActual;
+    private Long numerocuenta;
+    private LocalDate fechaentrada;
 
     @Override
     public Optional<Cuenta> findCuentaByNumerocuenta(Long numerocuenta) {
@@ -72,7 +74,9 @@ public class CuentaDaoImpl implements CuentaDao {
 
     @Override
     public Double getSaldo(Long numerocuenta) {
-        Double saldoActual = cuentaRepository.getSaldo(numerocuenta);
+
+        saldoActual = cuentaRepository.getSaldo(numerocuenta);
+
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Double> criteria = builder.createQuery(Double.class);
         Root<Cuenta> root = criteria.from(Cuenta.class);
@@ -87,6 +91,27 @@ public class CuentaDaoImpl implements CuentaDao {
 
         return calculadoSaldo;
     }
+
+
+    @Override
+    public Double getSaldoFecha(Long numerocuenta, LocalDate fecha) {
+        saldoActual = cuentaRepository.getSaldoFecha(numerocuenta,fecha);
+
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Double> criteria = builder.createQuery(Double.class);
+        Root<Cuenta> root = criteria.from(Cuenta.class);
+        criteria.select(root.get("importeinicial"));
+
+        criteria.where(builder.equal(root.get("numerocuenta"), numerocuenta));
+
+        Double saldo = manager.createQuery(criteria).getSingleResult();
+
+        Double calculadoSaldo = saldo + saldoActual;
+        return calculadoSaldo;
+    }
+
+
+
 //    @Transactional(readOnly =false)
 //    @Override
 //    private void updateSaldo(Long numerocuenta, Double calculadoSaldo) {

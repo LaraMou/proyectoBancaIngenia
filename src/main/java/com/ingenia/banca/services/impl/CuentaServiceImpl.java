@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,5 +62,10 @@ public class CuentaServiceImpl implements CuentaService {
     @Override
     public Double getSaldo(Long numerocuenta) {
         return cuentaDao.getSaldo(numerocuenta);
+    }
+
+    @Override
+    public Double getSaldoFecha(Long numerocuenta, LocalDate fechaentrada) {
+        return cuentaDao.getSaldoFecha(numerocuenta,fechaentrada);
     }
 }

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -153,13 +155,25 @@ public class CuentaController {
     }
 
     @GetMapping("/accounts/saldo/{numerocuenta}")
-    @ApiOperation("Encuentra todas las cuentas de un usuario")
-    public Double getSaldo(@PathVariable Long numerocuenta) {
+    @ApiOperation("Obtiene Saldo actual ")
+    public Double getSaldo(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta) {
         log.debug("Rest request getSaldo " + numerocuenta);
         if (numerocuenta != null)
             cuentaService.getSaldo(numerocuenta);
         System.out.println(">>>>>>>saldo" + cuentaService.getSaldo(numerocuenta));
         return cuentaService.getSaldo(numerocuenta);
+    }
+
+    @GetMapping("/accounts/instant/{numerocuenta}")
+    @ApiOperation("Obtiene saldo a fecha entrada")
+    public Double getSaldoFecha(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta,@RequestParam String fechaInicio) {
+        log.debug("Rest request getSaldo " + numerocuenta);
+        System.out.println("<<<<<<<<<<<<<<fecha"+fechaInicio);
+        LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        if (numerocuenta !=null)
+            cuentaService.getSaldoFecha(numerocuenta,localdate1);
+        System.out.println(">>>>>>>saldo" + cuentaService.getSaldoFecha(numerocuenta,localdate1));
+        return cuentaService.getSaldoFecha(numerocuenta,localdate1);
     }
 
 }

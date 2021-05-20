@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +26,7 @@ public class Movimiento {
 
     @Column(name="fecha_valor" , nullable = false)
     @ApiModelProperty("Formato tipo fecha:yyyy-mm-dd-hh-mm")
-    private LocalDateTime fechaValor;
+    private LocalDate fechaValor;
 
     @Column(name="descripcion")
     @ApiModelProperty("Formato texto")
@@ -51,7 +52,7 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(Double importe, LocalDateTime fecha, LocalDateTime fechaValor, String descripcion, String concepto) {
+    public Movimiento(Double importe, LocalDateTime fecha, LocalDate fechaValor, String descripcion, String concepto) {
         this.importe = importe;
         this.fecha = fecha;
         this.fechaValor = fechaValor;
@@ -83,11 +84,11 @@ public class Movimiento {
         this.fecha = fecha;
     }
 
-    public LocalDateTime getFechaValor() {
+    public LocalDate getFechaValor() {
         return fechaValor;
     }
 
-    public void setFechaValor(LocalDateTime fechaValor) {
+    public void setFechaValor(LocalDate fechaValor) {
         this.fechaValor = fechaValor;
     }
 

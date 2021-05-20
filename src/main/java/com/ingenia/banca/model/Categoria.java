@@ -19,9 +19,9 @@ public class Categoria {
     private String nombre;
 
 
-//    @ApiModelProperty("Listado cagetorias relacionadas movimiento")
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.ALL)
-//    private List<Movimiento> movimientos = new ArrayList<>();
+    @ApiModelProperty("Listado cagetorias relacionadas movimiento")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.ALL)
+    private List<Movimiento> movimientos = new ArrayList<>();
 
     public Categoria() {
     }
