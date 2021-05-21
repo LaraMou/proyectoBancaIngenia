@@ -85,6 +85,20 @@ public class BancaApplication implements CommandLineRunner {
          *
         */
 
+        Categoria restaurantes = new Categoria("RESTAURANTES");
+        categoriaRepository.save(restaurantes);
+        cuentaRepository.save(cuenta2);
+
+        Movimiento  movrestau1 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Restaurante Salomon","Restaurante tarje***");
+        Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Restaurant Marujita Salita","Pago tarje***");
+        Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Maria La portuguesa","REst. Pago tarje***");
+        movrestau1.setCuenta(cuenta2);
+        movrestau1.setCategoria(restaurantes);
+        movrestau2.setCategoria(restaurantes);
+        movrestau3.setCategoria(restaurantes);
+        movimientoDAO.createMovimiento(movrestau1);
+        movimientoDAO.createMovimiento(movrestau2);
+        movimientoDAO.createMovimiento(movrestau3);
 
 
 
