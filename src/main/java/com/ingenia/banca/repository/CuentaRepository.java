@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
-
-
+    @Query("SELECT SUM(importe) from Movimiento where cuenta.numerocuenta=?1")
+    Double getSaldoTotalCuenta(Long numerocuenta);
 
     @Query("SELECT importeinicial from Cuenta  where numerocuenta=?1")
     Double getSaldo(Long numerocuenta);

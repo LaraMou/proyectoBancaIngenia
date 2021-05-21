@@ -75,8 +75,7 @@ public class CuentaDaoImpl implements CuentaDao {
     @Override
     public Double getSaldo(Long numerocuenta) {
 
-        saldoActual = cuentaRepository.getSaldo(numerocuenta);
-
+        saldoActual = cuentaRepository.getSaldoTotalCuenta(numerocuenta);
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Double> criteria = builder.createQuery(Double.class);
         Root<Cuenta> root = criteria.from(Cuenta.class);

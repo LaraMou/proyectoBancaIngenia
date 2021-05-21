@@ -173,7 +173,6 @@ public class CuentaController {
         log.debug("Rest request getSaldo " + numerocuenta);
         if (numerocuenta != null)
             cuentaService.getSaldo(numerocuenta);
-        System.out.println(">>>>>>>saldo" + cuentaService.getSaldo(numerocuenta));
         return cuentaService.getSaldo(numerocuenta);
     }
 
