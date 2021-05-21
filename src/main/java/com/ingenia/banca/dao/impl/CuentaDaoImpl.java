@@ -94,25 +94,14 @@ public class CuentaDaoImpl implements CuentaDao {
 
 
     @Override
-    public Double getSaldoFecha(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin) {
-        //recuperar si la fecha es menor a la fecha de creacion
+    public Double getSaldoFecha(Long numerocuenta, LocalDate fechaInicio,LocalDate fechaFin) {
+            Double saldoFinal = cuentaRepository.getSaldoFecha(numerocuenta,fechaInicio,fechaFin);
+            Double saldoInicial = cuentaRepository.getSaldo(numerocuenta);
 
-        //suma de saldo de movimiento entre fechas
+            Double saldo = saldoInicial + saldoFinal;
 
-        CriteriaBuilder builder = manager.getCriteriaBuilder();
-        CriteriaQuery<Double> criteria = builder.createQuery(Double.class);
-        Root<Movimiento> root = criteria.from(Movimiento.class);
-        criteria.select(builder.sum(root.get("importe")));
-        criteria.where(builder.between(root.get("fechaValor"), fechainicio,fechafin));
-        Double saldo = manager.createQuery(criteria).getSingleResult();
-        if(saldo== null)
-            saldo = 0D;
 
-        Double saldoInicial = cuentaRepository.getSaldo(numerocuenta);
-        System.out.println("saldo"+saldoInicial);
-        Double calculadoSaldo = saldoInicial + saldo;
-
-        return calculadoSaldo;
+       return saldo;
     }
 
 

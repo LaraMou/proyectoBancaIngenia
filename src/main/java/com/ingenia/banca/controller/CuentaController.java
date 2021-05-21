@@ -187,7 +187,6 @@ public class CuentaController {
         LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if (numerocuenta !=null)
             cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2);
-        System.out.println(">>>>>>>saldo" + cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2));
         return cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2);
     }
 

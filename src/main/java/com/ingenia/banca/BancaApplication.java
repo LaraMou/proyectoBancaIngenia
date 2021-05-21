@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @SpringBootApplication
 public class BancaApplication implements CommandLineRunner {
@@ -61,10 +61,7 @@ public class BancaApplication implements CommandLineRunner {
 
 
 
-        /**
-         * Asocio Usuario anterior a la cuenta
-         // TODO
-         */
+
         List<Cuenta> cuentas = new ArrayList<>();
         Cuenta cuenta2 = new Cuenta(LocalDate.of(2000,02,02),
                 LocalDate.now(),LocalDate.now(),Estado.ACTIVO,1000D,2000D);

@@ -95,7 +95,7 @@ public class TarjetaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/tarjetas/cuenta/")
+    @GetMapping("/tarjetas/cuenta/{numeroTarjeta}")
     public ResponseEntity<List<Tarjeta>> findTarjetasByCuenta(@ApiParam("Clave primaria de la tarjeta")@RequestParam Long numeroCuenta) {
         log.debug("Rest request to find all cards in Cuenta: "+ numeroCuenta);
         List<Tarjeta> listTarjetas = tarjetaService.findTarjetasByCuenta(numeroCuenta);

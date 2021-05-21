@@ -87,7 +87,7 @@ public class Usuario {
     @ApiModelProperty("Formato texto")
     @Column(name="genero")
     private String genero;
-    //TODO ENTIDAD A PARTE DOMICILIO
+
 
     /**
      * Auditory Attributes

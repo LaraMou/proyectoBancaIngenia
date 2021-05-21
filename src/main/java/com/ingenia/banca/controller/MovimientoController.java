@@ -74,11 +74,7 @@ public class MovimientoController {
     public ResponseEntity<Movimiento> findOneMovimiento(@ApiParam("Clave primaria del Movimiento")@PathVariable Long id) {
         log.debug("Rest request a Movimiento with id: "+ id);
         Optional<Movimiento> movimientoOpt = movimientoService.findOneMovimiento(id);
-        if (movimientoOpt.isPresent())
-            return ResponseEntity.ok().body(movimientoOpt.get());
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return movimientoOpt.map(movimiento -> ResponseEntity.ok().body(movimiento)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
 
