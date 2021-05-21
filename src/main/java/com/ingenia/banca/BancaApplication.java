@@ -93,7 +93,7 @@ public class BancaApplication implements CommandLineRunner {
         Movimiento  movrestau2 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Restaurant Marujita Salita","Pago tarje***");
         Movimiento  movrestau3 = new Movimiento(50D, LocalDateTime.now(),LocalDate.now(),"Maria La portuguesa","REst. Pago tarje***");
         movrestau1.setCuenta(cuenta2);
-         movrestau1.setCategoria(restaurantes);
+        movrestau1.setCategoria(restaurantes);
         movrestau2.setCategoria(restaurantes);
         movrestau3.setCategoria(restaurantes);
         movimientoDAO.createMovimiento(movrestau1);

@@ -34,7 +34,7 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public Optional<Cuenta> findCuentaByNumerocuenta(Long numerocuenta) {
-        log.info("findOneUserById");
+        log.info("findOneCuentaById");
         if(numerocuenta!=null)
             return cuentaDao.findCuentaByNumerocuenta(numerocuenta);
         return Optional.empty();

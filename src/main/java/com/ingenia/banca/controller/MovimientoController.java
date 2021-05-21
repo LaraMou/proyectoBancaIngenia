@@ -92,4 +92,12 @@ public class MovimientoController {
     }
 
 
+    @GetMapping("/movimientos/categoria")
+    @ApiOperation("Encuentra todos los movimientos en una categoría")
+    public List<Movimiento> getSumaCategoriaMes(@ApiParam("Búsqueda de todas los movimientos en una categoría en un mes")@RequestParam Long numerocuenta,@RequestParam String fechainicio,@RequestParam String fechafin, @RequestParam Long idCat){
+    log.debug("Rest request all Movimientos of a type");
+        LocalDate localdate1 = LocalDate.parse(fechainicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return movimientoService.getSumaCategoriaMes(numerocuenta,localdate1,localdate2,idCat);
+    }
 }

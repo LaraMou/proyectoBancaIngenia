@@ -79,5 +79,12 @@ public class MovimientoDAOImpl implements MovimientoDAO {
 
     }
 
+    @Override
+    public List<Movimiento> getSumaCategoriaMes(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin, Long idCat) {
+        Query query = manager.createQuery("SELECT sum(importe) FROM Movimiento WHERE numerocuenta ="+numerocuenta+"AND fecha BETWEEN '"+fechainicio+"' AND '"+fechafin+"' AND categoria.id="+idCat+"");
+        return query.getResultList();
+
+    }
+
 
 }

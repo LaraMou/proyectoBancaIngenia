@@ -35,4 +35,7 @@ public class MovimientoServiceImpl implements MovimientoService {
 
     @Override
     public List<Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin){return this.movimientoDAO.findMovimientosEntre(id,fechaInicio,fechaFin);}
+
+    @Override
+    public List<Movimiento> getSumaCategoriaMes(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin, Long idCat){return this.movimientoDAO.getSumaCategoriaMes(numerocuenta,fechainicio,fechafin,idCat);}
 }
