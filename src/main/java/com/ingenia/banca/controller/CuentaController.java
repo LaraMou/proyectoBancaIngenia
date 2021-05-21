@@ -149,7 +149,7 @@ public class CuentaController {
             return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        response.put("mensaje", "El cliente eliminado con éxito!");
+        response.put("mensaje", "La cuenta ha sido eliminada con éxito!");
 
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
@@ -181,7 +181,6 @@ public class CuentaController {
     public Double getSaldoFecha(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta,@RequestParam String fechaInicio,@RequestParam String fechaFin ) {
 
         log.debug("Rest request getSaldo " + numerocuenta);
-        System.out.println(fechaFin+"*******"+fechaInicio);
         LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if (numerocuenta !=null)

@@ -86,21 +86,21 @@ class UsuarioTest {
         String ocupacion = "mis labores";
 
         if(item.getCiudad()!= ciudad)
-            System.out.println("ciudad_antes"+ item.getCiudad());
+
             item.setCiudad(ciudad);
 
         if(item.getDireccion()!= direccion)
-            System.out.println("direccion_antes"+ item.getDireccion());
+
             item.setDireccion(direccion);
 
         if(item.getCodigopostal()!= cp)
-            System.out.println("cp_antes"+ item.getDireccion());
+
             item.setCodigopostal(cp);
 
 
         String email_nuevo = "nuevo@mail.to";
         if(item.getEmail()!= email_nuevo)
-            System.out.println("email_antes"+ item.getEmail());
+
                 item.setEmail("nuevo@mail.to");
 
         usuarioService.saveUser(usuario);
@@ -108,7 +108,7 @@ class UsuarioTest {
         assertNotEquals("m@mailto.com",usuario.getEmail());
         usuarioDao.findUsuarioByNif(usuario.getNif());
         Optional<Usuario> usu = usuarioDao.findUsuarioByNif(usuario.getNif());
-        System.out.println(usu);
+
 
 
 
