@@ -21,5 +21,5 @@ public interface  MovimientoService {
 
     List <Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin);
 
-
+    List<Movimiento> getSumaCategoriaMes(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin, Long idCat);
 }

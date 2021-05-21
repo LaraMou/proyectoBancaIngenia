@@ -22,4 +22,6 @@ public interface MovimientoDAO {
 //    List<Movimiento> findAllBetween(LocalDateTime fechainicio, LocalDateTime fechafin);
 
     public List<Movimiento> findMovimientosEntre(Long id, LocalDate fechaInicio, LocalDate fechaFin);
+
+    public List<Movimiento> getSumaCategoriaMes(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin, Long idCat);
 }

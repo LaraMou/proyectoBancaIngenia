@@ -117,17 +117,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 
 
-//    @Transactional(readOnly =false)
-//    @Override
-//    private void updateSaldo(Long numerocuenta, Double calculadoSaldo) {
-//        CriteriaBuilder builder = manager.getCriteriaBuilder();
-//        CriteriaBuilder builderUpdate = manager.getCriteriaBuilder();
-//        CriteriaUpdate<Cuenta> criteriaUpdate = builder.createCriteriaUpdate(Cuenta.class);
-//        Root<Cuenta> rootdb = criteriaUpdate.from(Cuenta.class);
-//        criteriaUpdate.set(rootdb.get("importeactual"), calculadoSaldo);
-//        criteriaUpdate.where(builder.equal(rootdb.get("numerocuenta"), numerocuenta));
-//        manager.createQuery(criteriaUpdate).executeUpdate();
-//    }
+
 
 
 }
