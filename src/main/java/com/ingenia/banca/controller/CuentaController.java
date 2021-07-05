@@ -170,7 +170,7 @@ public class CuentaController {
 
     @GetMapping("/accounts/saldo/{numerocuenta}")
     @ApiOperation("Obtiene Saldo actual ")
-    public ResponseEntity<?> getSaldo(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta) {
+    public ResponseEntity<?> getSaldo(@ApiParam("Long numerocuenta")@PathVariable Long numerocuenta) {
         log.debug("Rest request getSaldo " + numerocuenta);
         Map<String, Double> response = new HashMap<>();
         try{
@@ -222,6 +222,7 @@ public class CuentaController {
             response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
             return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
         return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
     }
 
@@ -257,7 +258,7 @@ public class CuentaController {
     @PutMapping("/accounts/savesaldo/{numerocuenta}")
     @ApiOperation("Guarda en el histórico de la tarjeta un saldo.")
     public ResponseEntity<?> saveSaldo(@ApiParam("Busqueda de movimientos entre dos fechas") @PathVariable Long numerocuenta, @RequestParam String fechaInicio, @RequestParam String fechaFin) {
-        Map<String, Double> response = new HashMap<>();
+        Map<String, Object> response = new HashMap<>();
         log.debug("Rest request getSaldoMedio " + numerocuenta);
 
         LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -268,16 +269,17 @@ public class CuentaController {
             if (accountOpt.isPresent()) {
                  cuentaService.saveSaldo(numerocuenta, localdate1, localdate2);
 
-
-                return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
+                response.put("mensaje", "La cuenta se ha atualizado con éxito!");
+                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 
 
 
             }
         } catch (DataAccessException e) {
-            response.put("Error al realizar la actualizacion en la base de datos", 0d);
+            response.put("mensaje","Error al realizar la actualizacion en la base de datos");
             response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
-            return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
+        response.put("mensaje", "La cuenta se ha atualizado con éxito!");
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }}

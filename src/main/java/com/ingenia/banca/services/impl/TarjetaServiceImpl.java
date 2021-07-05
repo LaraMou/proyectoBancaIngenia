@@ -5,6 +5,7 @@ import com.ingenia.banca.model.Tarjeta;
 import com.ingenia.banca.services.TarjetaService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,5 +37,10 @@ public class TarjetaServiceImpl implements TarjetaService {
     @Override
     public List<Tarjeta> findTarjetasByCuenta(Long numeroCuenta){
         return this.tarjetaDAO.findTarjetasByCuenta(numeroCuenta);
+    }
+
+    @Override
+    public Double getSaldo(Long numeroTarjeta, LocalDate fechaentrada, LocalDate fechafin) {
+        return tarjetaDAO.getSaldoFecha(numeroTarjeta,fechaentrada,fechafin);
     }
 }

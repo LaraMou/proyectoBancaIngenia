@@ -3,6 +3,7 @@ package com.ingenia.banca.dao.impl;
 import com.ingenia.banca.dao.TarjetaDAO;
 import com.ingenia.banca.model.Cuenta;
 import com.ingenia.banca.model.Tarjeta;
+import com.ingenia.banca.repository.CuentaRepository;
 import com.ingenia.banca.repository.TarjetaRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +32,9 @@ public class TarjetaDAOImpl implements TarjetaDAO {
 
     @Autowired
     private TarjetaRepository tarjetaRepository;
+    @Autowired
+    CuentaRepository cuentaRepository;
+
 
     @Override
     public Tarjeta createTarjeta(Tarjeta tarjeta){
@@ -82,6 +87,20 @@ public class TarjetaDAOImpl implements TarjetaDAO {
             return null;
         }
 
+    }
+
+    @Override
+    public Double getSaldoFecha(Long numeroTarjeta, LocalDate fechainicio, LocalDate fechafin) {
+        //obtener la cuenta asociada y el saldo de la cuenta.
+        Long numerocuenta = tarjetaRepository.getNumeroCuenta(numeroTarjeta);
+        System.out.println("MLO-TEST>>>>"+ numerocuenta);
+        Double saldoFinal = cuentaRepository.getSaldoFecha(numerocuenta,fechainicio,fechafin);
+        if(saldoFinal==null)
+            saldoFinal = 0d;
+        Double saldoInicial = cuentaRepository.getSaldo(numerocuenta);
+        Double saldo= saldoInicial + saldoFinal;
+        System.out.println("MLO-TEST>>>>"+saldo);
+        return saldo;
     }
 
 }

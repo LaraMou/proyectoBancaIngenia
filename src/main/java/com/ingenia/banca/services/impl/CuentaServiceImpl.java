@@ -65,8 +65,8 @@ public class CuentaServiceImpl implements CuentaService {
     }
 
     @Override
-    public Double getSaldoFecha(Long numerocuenta, LocalDate fechaentrada,LocalDate fechainicio) {
-        return cuentaDao.getSaldoFecha(numerocuenta,fechaentrada,fechainicio);
+    public Double getSaldoFecha(Long numerocuenta, LocalDate fechaentrada,LocalDate fechafin) {
+        return cuentaDao.getSaldoFecha(numerocuenta,fechaentrada,fechafin);
     }
 
     @Override

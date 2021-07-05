@@ -6,13 +6,18 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -103,5 +108,37 @@ public class TarjetaController {
             return ResponseEntity.ok().body(listTarjetas);
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/tarjetas/instant/{numeroTarjeta}")
+    @ApiOperation("Obtiene Saldo actual en cuenta de la tarjeta asociada")
+    public ResponseEntity<?> getSaldo(@ApiParam("Busqueda de movimientos entre dos fechas") @PathVariable Long numeroTarjeta, @RequestParam String fechaInicio, @RequestParam String fechaFin) {
+        Map<String, Double> response = new HashMap<>();
+        log.debug("Rest request getSaldo tarjeta " + numeroTarjeta);
+
+        LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println("MLO-TEST>>>>>" + localdate1);
+        System.out.println("MLO-TEST>>>>>" + localdate2);
+        try{
+
+            Optional<Tarjeta> tarjeta = tarjetaService.findOneTarjeta(numeroTarjeta);
+            if (tarjeta.isPresent()){
+                Double saldo = tarjetaService.getSaldo(numeroTarjeta,localdate1,localdate2);
+                response.put("Saldo actual", saldo);
+                return new ResponseEntity<Map<String,Double>>( response,HttpStatus.OK);
+            }
+            else {
+                response.put("El número de cuenta : ".concat(numeroTarjeta.toString().concat(" no existe en la base de datos!")),0d);
+                return new ResponseEntity<Map<String,Double>>( response,HttpStatus.NOT_FOUND);
+            }
+
+        } catch(DataAccessException e) {
+            response.put( "Error al realizar la consulta en la base de datos",0d);
+            response.put( e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()),0d);
+            return new ResponseEntity<Map<String,Double>>( response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
     }
 }
