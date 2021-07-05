@@ -45,6 +45,7 @@ public class MovimientoController {
     }
 
 
+
     @PutMapping("/movimientos/{id}")
     @ApiOperation("Modificación de movimientos")
     public ResponseEntity<Movimiento>updateMovimiento(@RequestBody Movimiento movimiento) {

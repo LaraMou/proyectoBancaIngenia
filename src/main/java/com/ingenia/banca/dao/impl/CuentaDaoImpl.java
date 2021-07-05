@@ -123,7 +123,7 @@ public class CuentaDaoImpl implements CuentaDao {
     @Transactional
     public void saveSaldo(Long numerocuenta, LocalDate fechainicio, LocalDate fechafin) {
         saldo = getSaldoFecha(numerocuenta, fechainicio, fechafin);
-        System.out.println("MLO-TEST>>>>" + saldo);
+
 
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaUpdate<Cuenta> update = builder.createCriteriaUpdate(Cuenta.class);
@@ -132,7 +132,7 @@ public class CuentaDaoImpl implements CuentaDao {
         update.where(builder.equal(root.get("numerocuenta"), numerocuenta));
 
         int i = manager.createQuery(update).executeUpdate();
-        System.out.println("Entities updated: " + i);
+
 
 
 

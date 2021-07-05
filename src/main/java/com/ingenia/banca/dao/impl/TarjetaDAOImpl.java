@@ -93,13 +93,13 @@ public class TarjetaDAOImpl implements TarjetaDAO {
     public Double getSaldoFecha(Long numeroTarjeta, LocalDate fechainicio, LocalDate fechafin) {
         //obtener la cuenta asociada y el saldo de la cuenta.
         Long numerocuenta = tarjetaRepository.getNumeroCuenta(numeroTarjeta);
-        System.out.println("MLO-TEST>>>>"+ numerocuenta);
+
         Double saldoFinal = cuentaRepository.getSaldoFecha(numerocuenta,fechainicio,fechafin);
         if(saldoFinal==null)
             saldoFinal = 0d;
         Double saldoInicial = cuentaRepository.getSaldo(numerocuenta);
         Double saldo= saldoInicial + saldoFinal;
-        System.out.println("MLO-TEST>>>>"+saldo);
+
         return saldo;
     }
 

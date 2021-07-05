@@ -41,7 +41,7 @@ public class Movimiento {
     @ManyToOne(fetch = FetchType.LAZY)
     @ApiModelProperty("Entidad relacionada many to one categorias")
     @JoinColumn(name = "id_categoria")
-    @JsonIgnore
+
      private Categoria categoria;
 
     @ManyToOne(fetch = FetchType.LAZY)

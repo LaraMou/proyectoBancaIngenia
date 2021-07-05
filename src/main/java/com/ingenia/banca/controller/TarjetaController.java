@@ -118,8 +118,7 @@ public class TarjetaController {
 
         LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        System.out.println("MLO-TEST>>>>>" + localdate1);
-        System.out.println("MLO-TEST>>>>>" + localdate2);
+
         try{
 
             Optional<Tarjeta> tarjeta = tarjetaService.findOneTarjeta(numeroTarjeta);
