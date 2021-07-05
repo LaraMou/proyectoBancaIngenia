@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class CuentaController {
     private final CuentaService cuentaService;
     private final Logger log = LoggerFactory.getLogger(Cuenta.class);
-
+    private Optional<Cuenta> accountOpt;
     public CuentaController(CuentaService cuentaService) {
         this.cuentaService = cuentaService;
     }
@@ -129,9 +129,9 @@ public class CuentaController {
     @GetMapping("/accounts/{numerocuenta}")
     public ResponseEntity<Cuenta> findOneAccount(@ApiParam("Clave primaria de la cuenta Long size 10")@PathVariable Long numerocuenta) {
         log.debug("Rest request a Cuenta with id: "+numerocuenta);
-        Optional<Cuenta> userOpt = cuentaService.findCuentaByNumerocuenta(numerocuenta);
-        if (userOpt.isPresent())
-            return ResponseEntity.ok().body(userOpt.get());
+        Optional<Cuenta> accountOpt = cuentaService.findCuentaByNumerocuenta(numerocuenta);
+        if (accountOpt.isPresent())
+            return ResponseEntity.ok().body(accountOpt.get());
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -144,6 +144,7 @@ public class CuentaController {
 
             cuentaService.deleteById(id);
         } catch (DataAccessException e) {
+
             response.put("mensaje", "Error al eliminar la cuenta de la base de datos");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -169,23 +170,87 @@ public class CuentaController {
 
     @GetMapping("/accounts/saldo/{numerocuenta}")
     @ApiOperation("Obtiene Saldo actual ")
-    public Double getSaldo(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta) {
+    public ResponseEntity<?> getSaldo(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta) {
         log.debug("Rest request getSaldo " + numerocuenta);
-        if (numerocuenta != null)
-            cuentaService.getSaldo(numerocuenta);
-        return cuentaService.getSaldo(numerocuenta);
+        Map<String, Double> response = new HashMap<>();
+        try{
+
+            accountOpt = cuentaService.findCuentaByNumerocuenta(numerocuenta);
+            if (accountOpt.isPresent()){
+                cuentaService.getSaldo(numerocuenta);
+                response.put( "Saldo actual",cuentaService.getSaldo(numerocuenta));
+                return new ResponseEntity<Map<String,Double>>( response,HttpStatus.OK);
+            }
+            else {
+                response.put("El número de cuenta : ".concat(numerocuenta.toString().concat(" no existe en la base de datos!")),0d);
+                return new ResponseEntity<Map<String,Double>>( response,HttpStatus.NOT_FOUND);
+            }
+
+        } catch(DataAccessException e) {
+            response.put( "Error al realizar la consulta en la base de datos",0d);
+            response.put( e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()),0d);
+            return new ResponseEntity<Map<String,Double>>( response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
     }
 
     @GetMapping("/accounts/instant/{numerocuenta}")
     @ApiOperation("Obtiene saldo a fecha entrada")
-    public Double getSaldoFecha(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long numerocuenta,@RequestParam String fechaInicio,@RequestParam String fechaFin ) {
-
+    public ResponseEntity<?> getSaldoFecha(@ApiParam("Busqueda de movimientos entre dos fechas") @PathVariable Long numerocuenta, @RequestParam String fechaInicio, @RequestParam String fechaFin) {
+        Map<String, Double> response = new HashMap<>();
         log.debug("Rest request getSaldo " + numerocuenta);
+
         LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        if (numerocuenta !=null)
-            cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2);
-        return cuentaService.getSaldoFecha(numerocuenta,localdate1,localdate2);
+        System.out.println("MLO-TEST>>>>>" + localdate1);
+        System.out.println("MLO-TEST>>>>>" + localdate2);
+        try {
+            accountOpt = cuentaService.findCuentaByNumerocuenta(numerocuenta);
+            if (accountOpt.isPresent()) {
+
+                    cuentaService.getSaldoFecha(numerocuenta, localdate1, localdate2);
+                    Double saldo = cuentaService.getSaldoFecha(numerocuenta, localdate1, localdate2);
+                    response.put("Saldo actual", saldo);
+                    return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
+
+
+
+            }
+        } catch (DataAccessException e) {
+            response.put("Error al realizar la consulta en la base de datos", 0d);
+            response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
+            return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
     }
 
-}
+    @GetMapping("/accounts/average/{numerocuenta}")
+    @ApiOperation("Obtiene el  saldo medio a fecha entrada")
+    public ResponseEntity<?> getAverageSaldo(@ApiParam("Busqueda de movimientos entre dos fechas") @PathVariable Long numerocuenta, @RequestParam String fechaInicio, @RequestParam String fechaFin) {
+        Map<String, Double> response = new HashMap<>();
+        log.debug("Rest request getSaldoMedio " + numerocuenta);
+
+        LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        try {
+            accountOpt = cuentaService.findCuentaByNumerocuenta(numerocuenta);
+            if (accountOpt.isPresent()) {
+                Double saldo = cuentaService.getAverageSaldo(numerocuenta, localdate1, localdate2);
+
+                response.put("Saldo actual", Double.valueOf(Math.round(saldo)));
+                return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
+
+
+
+            }
+        } catch (DataAccessException e) {
+            response.put("Error al realizar la consulta en la base de datos", 0d);
+            response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
+            return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
+    }}
+
+

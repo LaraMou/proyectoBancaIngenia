@@ -31,6 +31,7 @@ public class CuentaDaoImpl implements CuentaDao {
     private Double saldoActual;
     private Long numerocuenta;
     private LocalDate fechaentrada;
+    Double saldo;
 
     @Override
     public Optional<Cuenta> findCuentaByNumerocuenta(Long numerocuenta) {
@@ -94,18 +95,29 @@ public class CuentaDaoImpl implements CuentaDao {
 
     @Override
     public Double getSaldoFecha(Long numerocuenta, LocalDate fechaInicio,LocalDate fechaFin) {
-            Double saldoFinal = cuentaRepository.getSaldoFecha(numerocuenta,fechaInicio,fechaFin);
+        Double saldoFinal = cuentaRepository.getSaldoFecha(numerocuenta,fechaInicio,fechaFin);
+            if(saldoFinal==null)
+                saldoFinal = 0d;
             Double saldoInicial = cuentaRepository.getSaldo(numerocuenta);
-
-            Double saldo = saldoInicial + saldoFinal;
-
-
+             saldo= saldoInicial + saldoFinal;
        return saldo;
     }
 
+    @Override
+    public Double getAverageSaldo(Long numerocuenta, LocalDate fechainicio, LocalDate fechafin) {
+        Double saldoFinal = cuentaRepository.getAverageSaldo(numerocuenta,fechainicio,fechafin);
+        if(saldoFinal==null)
+            saldoFinal = 0d;
+
+        Double saldoInicial = cuentaRepository.getSaldo(numerocuenta);
 
 
 
+        saldo= saldoInicial + saldoFinal;
+
+
+        return saldo;
+    }
 
 
 }

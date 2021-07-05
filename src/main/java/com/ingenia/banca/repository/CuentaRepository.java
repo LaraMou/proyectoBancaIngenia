@@ -17,6 +17,12 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
     @Query("SELECT SUM(importe) from Movimiento where cuenta.numerocuenta=?1 And fechaValor>=?2 and fechaValor<=?3")
     Double getSaldoFecha(Long numerocuenta, LocalDate fechaInicio, LocalDate fechaFin);
 
+    @Query("SELECT AVG(importe) from Movimiento where cuenta.numerocuenta=?1 And fechaValor>=?2 and fechaValor<=?3")
+    Double getAverageSaldo(Long numerocuenta, LocalDate fechaInicio, LocalDate fechaFin);
+
+
+
+
 
 
 }
