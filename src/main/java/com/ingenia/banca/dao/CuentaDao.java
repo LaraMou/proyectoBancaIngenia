@@ -1,8 +1,6 @@
 package com.ingenia.banca.dao;
 
 import com.ingenia.banca.model.Cuenta;
-import com.ingenia.banca.model.Movimiento;
-import com.ingenia.banca.model.Usuario;
 
 
 import java.time.LocalDate;
@@ -20,5 +18,7 @@ public interface CuentaDao {
 
     Double getSaldoFecha(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin);
     Double getAverageSaldo(Long numerocuenta, LocalDate fechainicio,LocalDate fechafin);
+
+    void saveSaldo(Long numerocuenta, LocalDate fechainicio, LocalDate fechafin);
 
 }

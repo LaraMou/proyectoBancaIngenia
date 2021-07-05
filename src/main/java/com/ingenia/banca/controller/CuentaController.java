@@ -226,7 +226,7 @@ public class CuentaController {
     }
 
     @GetMapping("/accounts/average/{numerocuenta}")
-    @ApiOperation("Obtiene el  saldo medio a fecha entrada")
+    @ApiOperation("Obtiene el  saldo medio a una fecha/s de inicio y fin")
     public ResponseEntity<?> getAverageSaldo(@ApiParam("Busqueda de movimientos entre dos fechas") @PathVariable Long numerocuenta, @RequestParam String fechaInicio, @RequestParam String fechaFin) {
         Map<String, Double> response = new HashMap<>();
         log.debug("Rest request getSaldoMedio " + numerocuenta);
@@ -251,6 +251,33 @@ public class CuentaController {
             return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
+    }
+
+
+    @PutMapping("/accounts/savesaldo/{numerocuenta}")
+    @ApiOperation("Guarda en el histórico de la tarjeta un saldo.")
+    public ResponseEntity<?> saveSaldo(@ApiParam("Busqueda de movimientos entre dos fechas") @PathVariable Long numerocuenta, @RequestParam String fechaInicio, @RequestParam String fechaFin) {
+        Map<String, Double> response = new HashMap<>();
+        log.debug("Rest request getSaldoMedio " + numerocuenta);
+
+        LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        try {
+            accountOpt = cuentaService.findCuentaByNumerocuenta(numerocuenta);
+            if (accountOpt.isPresent()) {
+                 cuentaService.saveSaldo(numerocuenta, localdate1, localdate2);
+
+
+                return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
+
+
+
+            }
+        } catch (DataAccessException e) {
+            response.put("Error al realizar la actualizacion en la base de datos", 0d);
+            response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
+            return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
     }}
-
-

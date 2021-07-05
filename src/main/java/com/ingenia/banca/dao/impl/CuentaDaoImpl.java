@@ -2,19 +2,18 @@ package com.ingenia.banca.dao.impl;
 
 import com.ingenia.banca.dao.CuentaDao;
 import com.ingenia.banca.model.Cuenta;
-import com.ingenia.banca.model.Cuenta;
-import com.ingenia.banca.model.Movimiento;
 import com.ingenia.banca.model.Usuario;
 import com.ingenia.banca.repository.CuentaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +116,26 @@ public class CuentaDaoImpl implements CuentaDao {
 
 
         return saldo;
+    }
+
+    @Override
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    public void saveSaldo(Long numerocuenta, LocalDate fechainicio, LocalDate fechafin) {
+        saldo = getSaldoFecha(numerocuenta, fechainicio, fechafin);
+        System.out.println("MLO-TEST>>>>" + saldo);
+
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaUpdate<Cuenta> update = builder.createCriteriaUpdate(Cuenta.class);
+        Root<Cuenta> root = update.from(Cuenta.class);
+        update.set(root.get("importeactual"), saldo);
+        update.where(builder.equal(root.get("numerocuenta"), numerocuenta));
+
+        int i = manager.createQuery(update).executeUpdate();
+        System.out.println("Entities updated: " + i);
+
+
+
     }
 
 

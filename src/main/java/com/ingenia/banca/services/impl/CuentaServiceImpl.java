@@ -74,4 +74,9 @@ public class CuentaServiceImpl implements CuentaService {
         return cuentaDao.getAverageSaldo(numerocuenta,fechaentrada,fechafin);
     }
 
+    @Override
+    public void saveSaldo(Long numerocuenta, LocalDate fechaentrada, LocalDate fechafin) {
+        cuentaDao.saveSaldo(numerocuenta,fechaentrada,fechafin);
+    }
+
 }

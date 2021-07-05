@@ -15,10 +15,14 @@ public interface CuentaService {
 
     Cuenta saveCuenta(Cuenta cuenta);
 
-   void deleteById(Long id);
+    void deleteById(Long id);
 
-   List<Cuenta> findAccountsByUsuario(Long idUsuario);
-   Double getSaldo(Long numerocuenta);
-    Double getSaldoFecha(Long numerocuenta, LocalDate fechaentrada,LocalDate fechafin);
-    Double getAverageSaldo(Long numerocuenta, LocalDate fechaentrada,LocalDate fechafin);
+    List<Cuenta> findAccountsByUsuario(Long idUsuario);
+
+    Double getSaldo(Long numerocuenta);
+
+    Double getSaldoFecha(Long numerocuenta, LocalDate fechaentrada, LocalDate fechafin);
+
+    Double getAverageSaldo(Long numerocuenta, LocalDate fechaentrada, LocalDate fechafin);
+    void saveSaldo(Long numerocuenta, LocalDate fechaentrada, LocalDate fechafin);
 }
