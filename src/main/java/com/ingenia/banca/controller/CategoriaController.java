@@ -2,7 +2,7 @@ package com.ingenia.banca.controller;
 
 import com.ingenia.banca.model.Categoria;
 
-import com.ingenia.banca.model.Categoria;
+
 import com.ingenia.banca.services.CategoriaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -104,11 +104,16 @@ public class CategoriaController {
 
         try {
             Optional<Categoria> categoria = categoriaService.findById(id);
-            if(categoria.isPresent())
-                categoriaService.deleteById(id);
+          categoria.ifPresent(value -> categoriaService.deleteById(id));
+
+//            if(categoria.isPresent())
+//                categoriaService.deleteById(id);
         } catch (DataAccessException e) {
-            response.put("mensaje", "Error al eliminar la etiqueta de la base de datos");
-            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+             response.put("mensaje", "Error al eliminar la etiqueta de la base de datos");
+             /*
+             para evitar este bug se elimina el mensaje que debería de mostrar
+              */
+//            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
