@@ -1,0 +1,337 @@
+[33mcommit 3856a52db7bd1a90d4d0491a4a5c1927acef010f[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Fri May 21 11:08:51 2021 +0200
+
+    Commit#Mlo-Despliegue Produccion final
+
+[33mcommit 20d840f47f248d48af5c797f73f39e46f812570a[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Fri May 21 11:03:37 2021 +0200
+
+    Commit#Mlo-Despliegue Produc
+
+[33mcommit 9330902c36fbc0128b9cc475670b51ba90caf1e8[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Fri May 21 09:51:05 2021 +0200
+
+    Commit#Mlo-Cuentas FIX
+
+[33mcommit 0d5e7fc9503c011ed75b8be12b705a0a149c9523[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Fri May 21 09:37:09 2021 +0200
+
+    Commit#Mlo-Tarjetas FIX
+
+[33mcommit b66142a07e0dacc5881022c45de10dcd7cc9f8cc[m
+Merge: 9d63e32 4decb84
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Fri May 21 09:20:19 2021 +0200
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 4decb84cb0eff554aec75a93e0b566d0d45794ac[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Fri May 21 09:13:00 2021 +0200
+
+    GetSUMAcategoria/mes added
+
+[33mcommit f7fef94a0934e492bcc72d5f860686a73341c6ba[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Fri May 21 09:12:09 2021 +0200
+
+    GetSUMAcategoria/mes added
+
+[33mcommit 9d63e324fb940132c2c47b938ccf9449f49c6558[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Thu May 20 22:32:54 2021 +0200
+
+    Commit#Mlo-Calculo saldo actual fechas
+
+[33mcommit 3058073c495cd59c6aef606c863b010b2dfaf96f[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Thu May 20 21:39:25 2021 +0200
+
+    Commit#Mlo-Calculo saldo actual fechas
+
+[33mcommit b5593dce40cac7fd4d2be60c3cbd4f2d218dc834[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Thu May 20 13:41:07 2021 +0200
+
+    Commit#Mlo-Calculo saldo actual fechas
+
+[33mcommit 98df7e4eb1fb17ab98d6740e7d4a5fcf8ebc08a8[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Thu May 20 11:03:08 2021 +0200
+
+    Commit#Mlo-Calculo saldo actual. Unidireccionalidad Categoria y movimiento. Script data.sql
+
+[33mcommit 2726fb41f9cd8b8fef5b72c90127c210738dcb96[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Wed May 19 13:51:44 2021 +0200
+
+    Commit#Mlo-Control Errors
+
+[33mcommit a5ab33da16d71d7be7c6986ca55f8b977a83d44d[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Mon May 17 11:58:36 2021 +0200
+
+    Commit#Mlo-Despliegue Heroku FIX correct BD
+
+[33mcommit 1ee3719d06dbad4d10c868619d7ea12ccbab57e3[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Mon May 17 09:48:23 2021 +0200
+
+    Commit#Mlo-Despliegue Heroku FIX correct BD
+
+[33mcommit f66323c714f166a1cd26a1a4215f5dd1cb26f45e[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Mon May 17 09:21:19 2021 +0200
+
+    Added postman collection for project upload
+
+[33mcommit c63a3f1ea57b0fc5ed38d78dc23e611f791a191c[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Mon May 17 09:15:07 2021 +0200
+
+    Commit#Mlo-Despliegue Heroku
+
+[33mcommit 93f35fd2d315ae937564dd2ad687621328ed6e26[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Mon May 17 04:03:42 2021 +0200
+
+    Added filter findAccountsByUsuario
+
+[33mcommit 03f2c407f61488a4db5ea3c2bf7b9c3b2d7e10b5[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Mon May 17 01:03:08 2021 +0200
+
+    Added filter findTarjetasByCuenta
+
+[33mcommit 4a6b7b73b2285998b9fda4568975e3de206ba12b[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Mon May 17 00:08:55 2021 +0200
+
+    Commit#Mlo-Saldo, errores en la sentencia
+
+[33mcommit 1272fa6bcbb162480841ab76718d2c22c61b376d[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Sun May 16 23:37:46 2021 +0200
+
+    Fixed app.properties and added ballance filters
+
+[33mcommit 1c77f6bcc3e6f94cacbd60e9f7579be2e62b95de[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 22:53:13 2021 +0200
+
+    Commit#Mlo-Fixing entity Movimiento and Cuenta
+
+[33mcommit 482c5a3bbe8a8dabd952566ef4b79c7ff602ca38[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 19:50:57 2021 +0200
+
+    Commit#Mlo-Develop propierties changed
+
+[33mcommit 69daa3403b9ede194a76557f725aba9e35e790f9[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 19:13:24 2021 +0200
+
+    Commit#Mlo-Despliegue FIX POM heroku- propierties con bd de heroku
+
+[33mcommit 654eb6ade0ad363110782f31cad73cf3ed58c60c[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 19:09:45 2021 +0200
+
+    Commit#Mlo-Despliegue heroku- propierties con bd de heroku
+
+[33mcommit df3aa58856b5d6e6163426551d42e44a15200a0a[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 19:09:10 2021 +0200
+
+    Commit#Mlo-Despliegue heroku- propierties con bd de heroku
+
+[33mcommit aadf0e4258af21aeda2edc327dfba4ff7c9b45ab[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 16:44:19 2021 +0200
+
+    Commit#Mlo-Fix category
+
+[33mcommit fc727b50c2dc5ac48b700ea20e9ea79051d4ec2a[m
+Merge: 409b7bc 1840811
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 16:27:01 2021 +0200
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 184081197988ed966d41dc1a60dfbd9eb23e2bca[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Sun May 16 16:21:42 2021 +0200
+
+    Cleaned Login and opened it for testing
+
+[33mcommit 409b7bc5880c585f085d1e5d81b9b170cb1f6c29[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 13:19:54 2021 +0200
+
+    Commit#Mlo-Categoria Controller.Get all  & put review
+
+[33mcommit 93f289e3372e15c47c24558c70b9657677d2e04e[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sun May 16 13:19:29 2021 +0200
+
+    Commit#Mlo-Categoria Controller.Get all  & put review
+
+[33mcommit a81650ce2b6bda25fcc6d5d757186ad404cd3fac[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sat May 15 21:27:19 2021 +0200
+
+    Commit#Mlo-Categoria (completed) - Post works but rest Pending: get with pagination and put
+
+[33mcommit b6b8a8c4d681886f887cc0c1cd60ff631c27b254[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Sat May 15 18:32:53 2021 +0200
+
+    Fixed Movimiento and added Postman Collection to the Project
+
+[33mcommit 98e67f8092f35fc75177b88528965a7e8aef4e6d[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Sat May 15 17:52:10 2021 +0200
+
+    Tarjeta fixed
+
+[33mcommit 36a8756658894b453e7d4e806d0ca4992f04981f[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Sat May 15 15:12:14 2021 +0200
+
+    Commit#Mlo- METHOD GET, POST, PUT, DELETE BASIC WITHOUT FILTER.  Cuenta y Usuario. Main crea cuenta con tres movimientos y postman
+
+[33mcommit 1ecafadf3597724805373bbe1a35073d64e57bc9[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Sat May 15 12:42:50 2021 +0200
+
+    Fixing Tarjeta endpoints --(WIP)--
+
+[33mcommit 352bb21617e2a9646d13500b40a80e769ccc1546[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Fri May 14 17:56:00 2021 +0200
+
+    Commit#MLO-Testing Controller works post, get all , get one, both entities usuario and cuenta
+
+[33mcommit e5c0620890341e6a7733f4c59fe4e5d63441006a[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Fri May 14 11:40:18 2021 +0200
+
+    Commit#MLO-Change in LocalDateTime to LocalDate.
+
+[33mcommit e794a7d43f2d687e8bac07206f28440922017d3b[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Fri May 14 11:07:13 2021 +0200
+
+    Added Login configuration
+
+[33mcommit af42226bda3030ad5471d4ee3c827e11e1392def[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Fri May 14 01:05:33 2021 +0200
+
+    Added all SPRING classes for Tarjeta (POSTMAN/SWAGGER tests WIP)
+
+[33mcommit 0ba1b5d77362bc914deaf73fbb2707d0f487361b[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Fri May 14 01:05:11 2021 +0200
+
+    Added all SPRING classes for Movimiento (POSTMAN/SWAGGER tests WIP)
+
+[33mcommit 098c3a19fde340ba8fd0023dd1e41ed68805ed62[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Thu May 13 17:16:30 2021 +0200
+
+    Commit#MLO-Controller User and Accounts faseI
+
+[33mcommit b05df7d5001ca5061a7761b173698e0018ea5ea1[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Thu May 13 09:28:51 2021 +0200
+
+    Commit#MLO-Arreglo en movimiento-categorias error nombre tabla temporal
+
+[33mcommit 3a21ea8a2803070889ceabe0698eea68677cc8f1[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Thu May 13 08:47:15 2021 +0200
+
+    Added relationships between Cuenta-Tarjeta and Cuenta-Movimiento
+
+[33mcommit 3034fa75b1d7ee02e564791a70692cec86ec7926[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Thu May 13 08:24:30 2021 +0200
+
+    Added all properties to the models (And some minor stuff fix)
+
+[33mcommit a9a074c61ef9a1d201145526a809fc332b706b9e[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Thu May 13 08:13:42 2021 +0200
+
+    Commit#MLO-Relacion Movimiento Categoria n-n
+
+[33mcommit 7aaf9905540f6019d3ed70fd2a7a4adbd9f3d554[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Wed May 12 12:37:57 2021 +0200
+
+    Commit#Mlo-Clases Creadas Usuario, cuenta
+
+[33mcommit e42ac6116583292971a2828f2c5ac9cbb1f4a341[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Wed May 12 12:13:15 2021 +0200
+
+    Commit#Mlo-Clases Creadas Usuario, cuenta
+
+[33mcommit 53de2dc5279c10085d624c9db3eed10b8ef4fcb0[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Wed May 12 12:09:18 2021 +0200
+
+    Commit#Mlo-Clases Creadas Usuario, cuenta
+
+[33mcommit 7aac48271f06e6f299e85a5410e208afbe27a08f[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Wed May 12 11:04:45 2021 +0200
+
+    Added Tarjeta to Models (And some minor stuff fix)
+
+[33mcommit beccf1fcbea1300f172690b41f838f1ed102ad75[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Wed May 12 10:56:44 2021 +0200
+
+    Added Categoria to Models
+
+[33mcommit 9b9482a1615af91ff9084e4941f246b786d0afed[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Wed May 12 10:52:25 2021 +0200
+
+    renamed Operation to Movimiento
+
+[33mcommit 93bd57de4a797a75e6b0e2b9c60afea6ccfa848d[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Wed May 12 10:44:53 2021 +0200
+
+    Added Operation Model
+
+[33mcommit 10a238d7b6ced53e75504aedec746ed328b7f63f[m
+Author: A. Núñez <adriuma92@gmail.com>
+Date:   Wed May 12 09:51:03 2021 +0200
+
+    test commit
+
+[33mcommit 34a56013983ec9116c0be3fbc85614e58e35f226[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Wed May 12 09:52:09 2021 +0200
+
+    Commit#3  Develop
+
+[33mcommit 79d9dc7b1799e8fd392757ed182da1124226f3c8[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Wed May 12 09:40:53 2021 +0200
+
+    Commit#2  Paquetes
+
+[33mcommit d84401e67a9b66d1ab94c003f4a199852cfc4b54[m
+Author: Monica Lara <ptts.no2020@gmail.com>
+Date:   Wed May 12 09:31:50 2021 +0200
+
+    commit inicial
