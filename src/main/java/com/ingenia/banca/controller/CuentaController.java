@@ -98,7 +98,6 @@ public class CuentaController {
 
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al actualizar la cuenta en la base de datos");
-            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -146,7 +145,6 @@ public class CuentaController {
         } catch (DataAccessException e) {
 
             response.put("mensaje", "Error al eliminar la cuenta de la base de datos");
-            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -188,7 +186,6 @@ public class CuentaController {
 
         } catch(DataAccessException e) {
             response.put( "Error al realizar la consulta en la base de datos",0d);
-            response.put( e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()),0d);
             return new ResponseEntity<Map<String,Double>>( response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -218,7 +215,6 @@ public class CuentaController {
             }
         } catch (DataAccessException e) {
             response.put("Error al realizar la consulta en la base de datos", 0d);
-            response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
             return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -247,7 +243,7 @@ public class CuentaController {
             }
         } catch (DataAccessException e) {
             response.put("Error al realizar la consulta en la base de datos", 0d);
-            response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
+
             return new ResponseEntity<Map<String, Double>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<Map<String, Double>>(response, HttpStatus.OK);
@@ -276,7 +272,6 @@ public class CuentaController {
             }
         } catch (DataAccessException e) {
             response.put("mensaje","Error al realizar la actualizacion en la base de datos");
-            response.put(e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()), 0d);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         response.put("mensaje", "La cuenta se ha atualizado con éxito!");
