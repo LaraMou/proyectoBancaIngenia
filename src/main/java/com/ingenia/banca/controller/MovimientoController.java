@@ -1,0 +1,100 @@
+package com.ingenia.banca.controller;
+
+import com.ingenia.banca.model.Movimiento;
+import com.ingenia.banca.model.Tarjeta;
+import com.ingenia.banca.services.MovimientoService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
+
+
+@RestController
+@RequestMapping("/api")
+public class MovimientoController {
+
+    private MovimientoService movimientoService;
+
+    public MovimientoController(MovimientoService movimientoService){
+        this.movimientoService=movimientoService;
+    }
+    private final Logger log = LoggerFactory.getLogger(Movimiento.class);
+
+    @PostMapping("/movimientos")
+    @ApiOperation("Creación de un movimiento")
+    public ResponseEntity<Movimiento> createMovimiento(@RequestBody Movimiento movimiento) throws URISyntaxException {
+        log.debug("Create Movimiento");
+        if(movimiento.getId()!=null ){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            Movimiento movimientoCreado = movimientoService.createMovimiento(movimiento);
+            return ResponseEntity.created(new URI("/api/movimientos" + movimientoCreado.getId())).body(movimientoCreado);
+        }
+    }
+
+
+
+    @PutMapping("/movimientos/{id}")
+    @ApiOperation("Modificación de movimientos")
+    public ResponseEntity<Movimiento>updateMovimiento(@RequestBody Movimiento movimiento) {
+        log.debug("Modify Movimiento");
+        if(movimiento.getId()==null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        else{
+            return ResponseEntity.ok().body( movimientoService.updateMovimiento(movimiento));
+        }
+    }
+
+    @DeleteMapping("movimientos/{id}")
+    @ApiOperation("Delete de un movimiento")
+    public void deleteMovimiento(@PathVariable Long id) {movimientoService.deleteMovimiento(id);}
+
+
+    @GetMapping("/movimientos")
+    @ApiOperation("Encuentra todos los movimientos sin paginación")
+    public List<Movimiento> findMovimientos(){
+        log.debug("Rest request all Movimientos");
+        return movimientoService.findMovimientos();
+    }
+
+
+    @GetMapping("/movimientos/{id}")
+    public ResponseEntity<Movimiento> findOneMovimiento(@ApiParam("Clave primaria del Movimiento")@PathVariable Long id) {
+        log.debug("Rest request a Movimiento with id: "+ id);
+        Optional<Movimiento> movimientoOpt = movimientoService.findOneMovimiento(id);
+        return movimientoOpt.map(movimiento -> ResponseEntity.ok().body(movimiento)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+    }
+
+    @GetMapping("/movimientos/intervalo/{id}")
+    @ApiOperation("Encuentra todos los movimientos sin paginación")
+    public List<Movimiento> findMovimientosEntre(@ApiParam("Busqueda de movimientos entre dos fechas")@PathVariable Long id,@RequestParam String fechaInicio,@RequestParam String fechaFin){
+        log.debug("Rest request all Movimientos");
+        LocalDate localdate1 = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return movimientoService.findMovimientosEntre(id,localdate1,localdate2);
+    }
+
+
+    @GetMapping("/movimientos/categoria")
+    @ApiOperation("Encuentra todos los movimientos en una categoría")
+    public List<Movimiento> getSumaCategoriaMes(@ApiParam("Búsqueda de todas los movimientos en una categoría en un mes")@RequestParam Long numerocuenta,@RequestParam String fechainicio,@RequestParam String fechafin, @RequestParam Long idCat){
+    log.debug("Rest request all Movimientos of a type");
+        LocalDate localdate1 = LocalDate.parse(fechainicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localdate2 = LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return movimientoService.getSumaCategoriaMes(numerocuenta,localdate1,localdate2,idCat);
+    }
+}
